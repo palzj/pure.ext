@@ -40,12 +40,11 @@ public static partial class Extensions
             typeName = @this.ParameterType.GetShortDeclaraction();
         }
 
-
-        if (Attribute.IsDefined(@this, typeof (ParamArrayAttribute)))
+        if (Attribute.IsDefined(@this, typeof(ParamArrayAttribute)))
         {
             sb.Append("params ");
         }
-        else if (@this.Position == 0 && @this.Member.IsDefined(typeof (ExtensionAttribute)))
+        else if (@this.Position == 0 && @this.Member.IsDefined(typeof(ExtensionAttribute)))
         {
             sb.Append("this ");
         }
@@ -87,7 +86,6 @@ public static partial class Extensions
                 attributes.Add("Optional");
             }
         }
-
 
         string attribute = attributes.Count > 0 ? "[" + string.Join(", ", attributes) + "] " : "";
         sb.Insert(0, attribute);

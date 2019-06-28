@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 /// <summary>
 /// 分页列表拓展
 /// </summary>
@@ -23,6 +24,7 @@ public static class PageLinqExtensions
         var pageOfItems = allItems.Skip(itemIndex).Take(pageSize);
         return new PagedList<T>(pageOfItems, pageIndex, pageSize, totalItemCount);
     }
+
     public static PagedList<T> ToPagedList<T>(this IEnumerable<T> allItems, int pageIndex, int pageSize)
     {
         return allItems.AsQueryable().ToPagedList(pageIndex, pageSize);

@@ -17,19 +17,26 @@ public static partial class Extensions
         switch (@this.MemberType)
         {
             case MemberTypes.Field:
-                return ((FieldInfo) @this).GetDeclaraction();
+                return ((FieldInfo)@this).GetDeclaraction();
+
             case MemberTypes.Property:
-                return ((PropertyInfo) @this).GetDeclaraction();
+                return ((PropertyInfo)@this).GetDeclaraction();
+
             case MemberTypes.Constructor:
-                return ((ConstructorInfo) @this).GetDeclaraction();
+                return ((ConstructorInfo)@this).GetDeclaraction();
+
             case MemberTypes.Method:
-                return ((MethodInfo) @this).GetDeclaraction();
+                return ((MethodInfo)@this).GetDeclaraction();
+
             case MemberTypes.TypeInfo:
-                return ((Type) @this).GetDeclaraction();
+                return ((Type)@this).GetDeclaraction();
+
             case MemberTypes.NestedType:
-                return ((Type) @this).GetDeclaraction();
+                return ((Type)@this).GetDeclaraction();
+
             case MemberTypes.Event:
-                return ((EventInfo) @this).GetDeclaraction();
+                return ((EventInfo)@this).GetDeclaraction();
+
             default:
                 return null;
         }

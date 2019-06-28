@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+
 /// <summary>
 /// 	Extension methods for byte-Arrays
 /// </summary>
@@ -32,6 +33,7 @@ public static class ByteArrayExtensions
             _toByteMap[c2] = (byte)(10 + c2 - 'A');
         }
     }
+
     public static byte[] FromHex(this string hexString)
     {
         if ((hexString == null) || ((hexString.Length % 2) != 0))
@@ -93,6 +95,7 @@ public static class ByteArrayExtensions
         }
         return new string(chArray);
     }
+
     /// <summary>
     /// 	Find the first occurence of an byte[] in another byte[]
     /// </summary>
@@ -126,8 +129,8 @@ public static class ByteArrayExtensions
         return -1;
     }
 
-
     #region Z.EXT
+
     /// <summary>
     ///     Converts an array of 8-bit unsigned integers to its equivalent string representation that is encoded with
     ///     base-64 digits.
@@ -179,6 +182,7 @@ public static class ByteArrayExtensions
     {
         return Convert.ToBase64String(inArray, offset, length, options);
     }
+
     /// <summary>
     ///     Converts a subset of an 8-bit unsigned integer array to an equivalent subset of a Unicode character array
     ///     encoded with base-64 digits. Parameters specify the subsets as offsets in the input and output arrays, and
@@ -211,6 +215,7 @@ public static class ByteArrayExtensions
     {
         return Convert.ToBase64CharArray(inArray, offsetIn, length, outArray, offsetOut, options);
     }
+
     /// <summary>
     ///     A byte[] extension method that resizes the byte[].
     /// </summary>
@@ -223,9 +228,7 @@ public static class ByteArrayExtensions
         return @this;
     }
 
-    #endregion
-
-
+    #endregion Z.EXT
 
     /// <summary>
     /// 转换为Base62编码字节数组
@@ -293,6 +296,7 @@ public static class ByteArrayExtensions
 
         return result;
     }
+
     /// <summary>
     /// 转换为Base62编码字符串
     /// </summary>
@@ -352,6 +356,7 @@ public static class ByteArrayExtensions
     {
         return Convert.ToBase64String(bytes);
     }
+
     /// <summary>
     /// 转换为Base64编码字节数组
     /// </summary>
@@ -467,5 +472,4 @@ public static class ByteArrayExtensions
         }
         return true;
     }
-
 }

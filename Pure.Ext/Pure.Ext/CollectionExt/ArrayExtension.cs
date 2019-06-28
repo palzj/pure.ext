@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+
 /// <summary>
 /// 数组类型拓展
 /// </summary>
 public static class ArrayExtension
 {
-
     /// <summary>
     /// 验证数组是否为空
     /// </summary>
@@ -25,7 +25,7 @@ public static class ArrayExtension
     ///<param name = "source"></param>
     ///<param name = "index"></param>
     ///<returns></returns>
-    /// <remarks> 
+    /// <remarks>
     /// </remarks>
     public static bool WithinIndex(this Array source, int index)
     {
@@ -39,13 +39,12 @@ public static class ArrayExtension
     ///<param name = "index"></param>
     ///<param name="dimension"></param>
     ///<returns></returns>
-    /// <remarks> 
+    /// <remarks>
     /// </remarks>
     public static bool WithinIndex(this Array source, int index, int dimension = 0)
     {
         return source != null && index >= source.GetLowerBound(dimension) && index <= source.GetUpperBound(dimension);
     }
-
 
     /// <summary>
     /// 组合两个数组到一个新的数组
@@ -60,7 +59,7 @@ public static class ArrayExtension
     /// 		int[] arrayTwo = new[] { 5, 6, 7, 8 };
     /// 		Array combinedArray = arrayOne.CombineArray<int>(arrayTwo);
     /// 	</code>
-    /// </example> 
+    /// </example>
     public static T[] CombineArray<T>(this T[] combineWith, T[] arrayToCombine)
     {
         if (combineWith != default(T[]) && arrayToCombine != default(T[]))
@@ -104,7 +103,7 @@ public static class ArrayExtension
     ///         int[] result = new[] { 1, 2, 3, 4 }.ClearAll<int>();
     ///     </code>
     /// </example>
-    /// <remarks> 
+    /// <remarks>
     /// </remarks>
     public static T[] ClearAll<T>(this T[] arrayToClear)
     {
@@ -127,7 +126,7 @@ public static class ArrayExtension
     ///         Array result = array.ClearAt(2);
     ///     </code>
     /// </example>
-    /// <remarks> 
+    /// <remarks>
     /// </remarks>
     public static Array ClearAt(this Array arrayToClear, int at)
     {
@@ -152,7 +151,7 @@ public static class ArrayExtension
     ///           string[] clearString = new[] { "A" }.ClearAt<string>(0);
     ///     </code>
     /// </example>
-    /// <remarks> 
+    /// <remarks>
     /// </remarks>
     public static T[] ClearAt<T>(this T[] arrayToClear, int at)
     {
@@ -203,10 +202,11 @@ public static class ArrayExtension
     /// <param name="index"></param>
     /// <param name="length"></param>
     /// <param name="padToLength"></param>
-    /// <returns></returns> 
+    /// <returns></returns>
     public static T[] BlockCopy<T>(this T[] array, int index, int length, bool padToLength)
     {
-        if (array == null) throw new NullReferenceException();
+        if (array == null)
+            throw new NullReferenceException();
 
         int n = length;
         T[] b = null;
@@ -240,8 +240,8 @@ public static class ArrayExtension
             yield return array.BlockCopy(i, count, padToLength);
     }
 
-
     #region Z.Extensions
+
     /// <summary>
     ///     Sets a range of elements in the  to zero, to false, or to null, depending on the element type.
     /// </summary>
@@ -252,6 +252,7 @@ public static class ArrayExtension
     {
         Array.Clear(array, index, length);
     }
+
     /// <summary>
     ///     Searches an entire one-dimensional sorted  for a specific element, using the  interface implemented by each
     ///     element of the  and by the specified object.
@@ -329,6 +330,7 @@ public static class ArrayExtension
     {
         return Array.BinarySearch(array, index, length, value, comparer);
     }
+
     /// <summary>
     ///     Copies a range of elements from an  starting at the specified source index and pastes them to another
     ///     starting at the specified destination index.  Guarantees that all changes are undone if the copy does not
@@ -343,6 +345,7 @@ public static class ArrayExtension
     {
         Array.ConstrainedCopy(sourceArray, sourceIndex, destinationArray, destinationIndex, length);
     }
+
     /// <summary>
     ///     Copies a range of elements from an  starting at the first element and pastes them into another  starting at
     ///     the first element. The length is specified as a 32-bit integer.
@@ -496,6 +499,7 @@ public static class ArrayExtension
     {
         return Array.LastIndexOf(array, value, startIndex, count);
     }
+
     /// <summary>
     ///     Reverses the sequence of the elements in the entire one-dimensional .
     /// </summary>
@@ -641,7 +645,6 @@ public static class ArrayExtension
         Array.Sort(array, items, index, length, comparer);
     }
 
-
     /// <summary>
     ///     Copies a specified number of bytes from a source array starting at a particular offset to a destination array
     ///     starting at a particular offset.
@@ -655,6 +658,7 @@ public static class ArrayExtension
     {
         Buffer.BlockCopy(src, srcOffset, dst, dstOffset, count);
     }
+
     /// <summary>
     ///     Returns the number of bytes in the specified array.
     /// </summary>
@@ -664,6 +668,7 @@ public static class ArrayExtension
     {
         return Buffer.ByteLength(array);
     }
+
     /// <summary>
     ///     Retrieves the byte at a specified location in a specified array.
     /// </summary>
@@ -674,6 +679,7 @@ public static class ArrayExtension
     {
         return Buffer.GetByte(array, index);
     }
+
     /// <summary>
     ///     Assigns a specified value to a byte at a particular location in a specified array.
     /// </summary>
@@ -696,6 +702,7 @@ public static class ArrayExtension
     {
         return Array.TrueForAll(array, match);
     }
+
     /// <summary>
     ///     A T[] extension method that converts an array to a read only.
     /// </summary>
@@ -706,6 +713,7 @@ public static class ArrayExtension
     {
         return Array.AsReadOnly(array);
     }
+
     /// <summary>
     ///     A T[] extension method that exists.
     /// </summary>
@@ -717,6 +725,7 @@ public static class ArrayExtension
     {
         return Array.Exists(array, match);
     }
+
     /// <summary>
     ///     A T[] extension method that searches for the first match.
     /// </summary>
@@ -728,6 +737,7 @@ public static class ArrayExtension
     {
         return Array.Find(array, match);
     }
+
     /// <summary>
     ///     A T[] extension method that searches for the first all.
     /// </summary>
@@ -739,6 +749,7 @@ public static class ArrayExtension
     {
         return Array.FindAll(array, match);
     }
+
     /// <summary>
     ///     A T[] extension method that searches for the first index.
     /// </summary>
@@ -777,6 +788,7 @@ public static class ArrayExtension
     {
         return Array.FindIndex(array, startIndex, count, match);
     }
+
     /// <summary>
     ///     A T[] extension method that searches for the first last.
     /// </summary>
@@ -788,6 +800,7 @@ public static class ArrayExtension
     {
         return Array.FindLast(array, match);
     }
+
     /// <summary>
     ///     A T[] extension method that searches for the last index.
     /// </summary>
@@ -826,13 +839,13 @@ public static class ArrayExtension
     {
         return Array.FindLastIndex(array, startIndex, count, match);
     }
-    #endregion
 
-    #endregion
+    #endregion Z.Extensions
 
-
+    #endregion BlockCopy
 
     #region 转换一维数组为二维数组
+
     /// <summary>
     /// 转换一维数组为二维数组
     /// </summary>
@@ -896,15 +909,16 @@ public static class ArrayExtension
             b[i] = a[i / c, i % c];
         return b;
     }
-    #endregion
 
+    #endregion 转换一维数组为二维数组
 
     #region 转换一个M行N列的二维数组为DataTable
-    /// <summary>  
-    /// 转换一个M行N列的二维数组为DataTable  
-    /// </summary>  
-    /// <param name="Arrays">M行N列的二维数组</param>  
-    /// <returns>返回DataTable</returns>  
+
+    /// <summary>
+    /// 转换一个M行N列的二维数组为DataTable
+    /// </summary>
+    /// <param name="Arrays">M行N列的二维数组</param>
+    /// <returns>返回DataTable</returns>
     public static DataTable ToDataTable<T>(this T[,] Arrays)
     {
         DataTable dt = new DataTable();
@@ -926,17 +940,18 @@ public static class ArrayExtension
         }
 
         return dt;
-
     }
-    #endregion
+
+    #endregion 转换一个M行N列的二维数组为DataTable
 
     #region 转换一个指定列M行N列的二维数组为DataTable
-    /// <summary>  
-    /// 转换一个M行N列的二维数组为DataTable  
-    /// </summary>  
-    /// <param name="ColumnNames">一维数组，代表列名，不能有重复值</param>  
-    /// <param name="Arrays">M行N列的二维数组</param>  
-    /// <returns>返回DataTable</returns>  
+
+    /// <summary>
+    /// 转换一个M行N列的二维数组为DataTable
+    /// </summary>
+    /// <param name="ColumnNames">一维数组，代表列名，不能有重复值</param>
+    /// <param name="Arrays">M行N列的二维数组</param>
+    /// <returns>返回DataTable</returns>
     public static DataTable ToDataTable<T>(this T[,] Arrays, string[] ColumnNames)
     {
         DataTable dt = new DataTable();
@@ -956,9 +971,11 @@ public static class ArrayExtension
         }
         return dt;
     }
-    #endregion
+
+    #endregion 转换一个指定列M行N列的二维数组为DataTable
 
     #region 转换DataTable第一维数据到一维字符串数组
+
     /// <summary>
     /// 转换DataTable第一维数据到一维字符串数组
     /// </summary>
@@ -974,11 +991,12 @@ public static class ArrayExtension
             else sr[i] = dt.Rows[i][0];
         }
         return sr;
-
     }
-    #endregion
+
+    #endregion 转换DataTable第一维数据到一维字符串数组
 
     #region 转换DataTable指定维数据到一维字符串数组
+
     /// <summary>
     /// 转换DataTable指定维数据到一维字符串数组
     /// </summary>
@@ -995,11 +1013,12 @@ public static class ArrayExtension
             else sr[i] = dt.Rows[i][sColumn];
         }
         return sr;
-
     }
-    #endregion
+
+    #endregion 转换DataTable指定维数据到一维字符串数组
 
     #region 转换DataTable第几维数据到一维字符串数组
+
     /// <summary>
     /// 转换DataTable第几维数据到一维字符串数组
     /// </summary>
@@ -1016,12 +1035,12 @@ public static class ArrayExtension
             else sr[i] = dt.Rows[i][iColumn];
         }
         return sr;
-
     }
-    #endregion
 
+    #endregion 转换DataTable第几维数据到一维字符串数组
 
     #region 转换DataTable所有数据到二维字符串数组
+
     /// <summary>
     /// 转换DataTable所有数据到二维字符串数组
     /// </summary>
@@ -1038,20 +1057,20 @@ public static class ArrayExtension
                 if (Convert.IsDBNull(dt.Rows[i][j])) sr[i, j] = "";
                 else sr[i, j] = dt.Rows[i][j];
             }
-
         }
         return sr;
-
     }
-    #endregion
+
+    #endregion 转换DataTable所有数据到二维字符串数组
 
     #region 转换一维数组为DataTable
-    /// <summary>  
-    /// 转换一维数组为DataTable  
-    /// </summary>  
-    /// <param name="ColumnName">列名</param>  
-    /// <param name="Array">一维数组</param>  
-    /// <returns>返回DataTable</returns>  
+
+    /// <summary>
+    /// 转换一维数组为DataTable
+    /// </summary>
+    /// <param name="ColumnName">列名</param>
+    /// <param name="Array">一维数组</param>
+    /// <returns>返回DataTable</returns>
     public static DataTable ToDataTable(this string[] Array, string ColumnName)
     {
         DataTable dt = new DataTable();
@@ -1064,7 +1083,8 @@ public static class ArrayExtension
         }
         return dt;
     }
-    #endregion
+
+    #endregion 转换一维数组为DataTable
 
     /// <summary>
     /// 格式化清空数组null或者empty元素
@@ -1076,7 +1096,6 @@ public static class ArrayExtension
     {
         if (Arrays != null && Arrays.Length > 0)
         {
-
             int length = 0;
             T[] Tmps = Arrays;
             foreach (T item in Tmps)
@@ -1096,14 +1115,10 @@ public static class ArrayExtension
                 }
             }
             return Arrays;
-
         }
         else
         {
             return Arrays;
         }
     }
-
-
 }
-

@@ -37,6 +37,7 @@ public static class StringArrayExtensions
         sb.Append(suffix);
         return sb.ToString();
     }
+
     /// <summary>
     /// 拼接字符串
     /// </summary>
@@ -47,5 +48,4 @@ public static class StringArrayExtensions
     {
         return string.Join(separator, values);
     }
-
 }

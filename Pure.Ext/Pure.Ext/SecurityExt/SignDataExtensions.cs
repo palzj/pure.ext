@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 
 /// <summary>
@@ -9,7 +6,7 @@ using System.Text;
 /// </summary>
 public class SysAuthorizeInfo
 {
-    #region  参与签名属性
+    #region 参与签名属性
 
     /// <summary>
     ///   应用版本
@@ -35,7 +32,7 @@ public class SysAuthorizeInfo
     public string DeviceId { get; set; }
 
     /// <summary>
-    ///  Token 
+    ///  Token
     /// </summary>
     public string Token { get; set; }
 
@@ -49,7 +46,6 @@ public class SysAuthorizeInfo
     /// </summary>
     public string Sign { get; set; }
 
-
     /// <summary>
     /// IP地址   可选
     /// </summary>
@@ -60,7 +56,6 @@ public class SysAuthorizeInfo
     /// </summary>
     public string WebBrowser { get; set; }
 
-
     /// <summary>
     /// 原始appsource   可选
     /// 主要是当应用层向基础层传递时使用
@@ -68,20 +63,16 @@ public class SysAuthorizeInfo
     /// </summary>
     public string OriginAppSource { get; set; }
 
-    #endregion
-
+    #endregion 参与签名属性
 
     /// <summary>
     /// 构造函数
     /// </summary>
     public SysAuthorizeInfo()
     {
-
     }
 
-
-
-    #region  字符串处理
+    #region 字符串处理
 
     /// <summary>
     ///   从头字符串中初始化签名相关属性信息
@@ -106,30 +97,39 @@ public class SysAuthorizeInfo
                             case "appversion":
                                 AppVersion = val;
                                 break;
+
                             case "token":
                                 Token = val;
                                 break;
+
                             case "appsource":
                                 AppSource = val;
                                 break;
+
                             case "appclient":
                                 AppClient = val;
                                 break;
+
                             case "sign":
                                 Sign = val;
                                 break;
+
                             case "deviceid":
                                 DeviceId = val;
                                 break;
+
                             case "timespan":
                                 TimeSpan = val.To<long>();
                                 break;
+
                             case "ipaddress":
                                 IpAddress = val;
                                 break;
+
                             case "webbrowser":
                                 WebBrowser = val;
                                 break;
+
                             case "originappsource":
                                 OriginAppSource = val;
                                 break;
@@ -178,9 +178,9 @@ public class SysAuthorizeInfo
         return newOne;
     }
 
-    #endregion
+    #endregion 字符串处理
 
-    #region  签名相关
+    #region 签名相关
 
     /// <summary>
     ///   检验是否合法
@@ -190,7 +190,7 @@ public class SysAuthorizeInfo
     {
         var strTicketParas = GetSignContent(separator);
 
-        string signData = strTicketParas.ToString().ToDecryptAesString( secretKey);
+        string signData = strTicketParas.ToString().ToDecryptAesString(secretKey);
 
         return Sign == signData;
     }
@@ -235,8 +235,7 @@ public class SysAuthorizeInfo
         }
     }
 
-    #endregion
-
+    #endregion 签名相关
 }
 
 /// <summary>
@@ -254,10 +253,11 @@ public static class SignDataExtensions
     {
         if (appInfo != null)
         {
-            return appInfo.ToSignData(value);            
+            return appInfo.ToSignData(value);
         }
         return value;
     }
+
     /// <summary>
     /// 校验数据签名
     /// </summary>

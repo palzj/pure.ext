@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+
 /// <summary>
 /// IComponent 拓展
 /// </summary>
@@ -9,7 +10,7 @@ public static class ComponentExtensions
     /// 	Othervise returns <c>false</c>.
     /// </summary>
     /// <param name = "target">Target component. Can not be null.</param>
-    /// <remarks> 
+    /// <remarks>
     /// </remarks>
     public static bool IsInDesignMode(this IComponent target)
     {
@@ -22,7 +23,7 @@ public static class ComponentExtensions
     /// 	Othervise returns <c>false</c>.
     /// </summary>
     /// <param name = "target">Target component.</param>
-    /// <remarks> 
+    /// <remarks>
     /// </remarks>
     public static bool IsInRuntimeMode(this IComponent target)
     {

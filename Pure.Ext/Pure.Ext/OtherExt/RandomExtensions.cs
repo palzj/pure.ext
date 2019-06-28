@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+
 /// <summary>
 /// RandomExtensions
 /// </summary>
 public static class RandomExtensions
 {
-
     /// <summary>
     /// 随机获取指定长度列表项
     /// </summary>
@@ -34,7 +34,6 @@ public static class RandomExtensions
             else
             {
                 list.Add(item);
-
             }
         }
         return list;
@@ -54,7 +53,7 @@ public static class RandomExtensions
 
     public static Random NewRandom()
     {
-        //return new Random(unchecked((int)DateTime.Now.Ticks)); 
+        //return new Random(unchecked((int)DateTime.Now.Ticks));
         return new Random(new RNGCryptoServiceProvider().GetHashCode());
     }
 
@@ -71,6 +70,7 @@ public static class RandomExtensions
         int index = rnd.Next(0, list.Length);
         return list[index];
     }
+
     /// <summary>
     /// 随机获取不在指定范围的项
     /// </summary>
@@ -154,7 +154,6 @@ public static class RandomExtensions
         var chosen = source[chosenIdx];
 
         return chosen;
-
     }
 
     /// <summary>
@@ -174,6 +173,7 @@ public static class RandomExtensions
             throw new ArgumentException("source不能为空");
         }
     }
+
     /// <summary>
     /// 获取指定长度的随机字符串
     /// </summary>
@@ -255,8 +255,8 @@ public static class RandomExtensions
         }
         System.Random random = NewRandom(); //new Random(new RNGCryptoServiceProvider().GetHashCode());
         return random.Next(min, max + 1);
-       
     }
+
     /// <summary>
     /// 随机索取指定范围内的double值
     /// </summary>
@@ -270,6 +270,7 @@ public static class RandomExtensions
         System.Random random = NewRandom(); //new Random(new RNGCryptoServiceProvider().GetHashCode());
         return (double)random.Next((int)Math.Floor(min * temp), (int)Math.Floor(max * temp)) / temp;
     }
+
     /// <summary>
     /// 随机索取指定范围内的float值
     /// </summary>
@@ -285,7 +286,7 @@ public static class RandomExtensions
     }
 
     /// <summary>
-    /// 利用时间依赖的Random 随机排序 
+    /// 利用时间依赖的Random 随机排序
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="size"></param>
@@ -330,7 +331,6 @@ public static class RandomExtensions
         return list;
     }
 
-
     /// <summary>
     /// 利用RNGCryptoServiceProvider 随机排序
     /// </summary>
@@ -356,6 +356,4 @@ public static class RandomExtensions
         }
         return list;
     }
-
-
 }

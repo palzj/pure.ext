@@ -17,11 +17,11 @@ public static partial class Extensions
     /// <returns>The attribute.</returns>
     public static T GetAttribute<T>(this Assembly @this) where T : Attribute
     {
-        object[] configAttributes = Attribute.GetCustomAttributes(@this, typeof (T), false);
+        object[] configAttributes = Attribute.GetCustomAttributes(@this, typeof(T), false);
 
         if (configAttributes != null && configAttributes.Length > 0)
         {
-            return (T) configAttributes[0];
+            return (T)configAttributes[0];
         }
 
         return null;

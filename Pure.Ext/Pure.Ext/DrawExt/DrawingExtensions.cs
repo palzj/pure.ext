@@ -33,7 +33,7 @@ using System.Drawing.Imaging;
 
             List<Icon> splitIcons = new List<Icon>();
             {
-                const int sICONDIR = 6;            // sizeof(ICONDIR) 
+                const int sICONDIR = 6;            // sizeof(ICONDIR)
                 const int sICONDIRENTRY = 16;      // sizeof(ICONDIRENTRY)
 
                 int count = BitConverter.ToInt16(srcBuf, 4); // ICONDIR.idCount
@@ -513,8 +513,6 @@ using System.Drawing.Imaging;
             return r;
         }
 
-         
-
         /// <summary>
         /// 生成验证码。
         /// </summary>
@@ -528,7 +526,7 @@ using System.Drawing.Imaging;
         {
             String sCode = String.Empty;
             //顏色列表，用於驗證碼、噪線、噪點
-            Color[] oColors ={ 
+            Color[] oColors ={
              System.Drawing.Color.Black,
              System.Drawing.Color.Red,
              System.Drawing.Color.Blue,
@@ -617,7 +615,6 @@ using System.Drawing.Imaging;
                 oGraphics.Dispose();
             }
         }
-
     }
 
 #endif

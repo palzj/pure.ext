@@ -11,6 +11,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+
 /// <summary>
 /// 	Extension methods for the root data type object
 /// </summary>
@@ -44,7 +45,7 @@ public static class ObjectExtensions
     /// 	Converts an object to the specified target type or returns the default value if
     ///     those 2 types are not convertible.
     ///     <para>
-    ///     If the <paramref name="value"/> can't be convert even if the types are 
+    ///     If the <paramref name="value"/> can't be convert even if the types are
     ///     convertible with each other, an exception is thrown.</para>
     /// </summary>
     /// <typeparam name = "T"></typeparam>
@@ -84,7 +85,7 @@ public static class ObjectExtensions
     /// 	Converts an object to the specified target type or returns the default value if
     ///     those 2 types are not convertible.
     ///     <para>
-    ///     If the <paramref name="value"/> can't be convert even if the types are 
+    ///     If the <paramref name="value"/> can't be convert even if the types are
     ///     convertible with each other, an exception is thrown.</para>
     /// </summary>
     /// <typeparam name = "T"></typeparam>
@@ -121,7 +122,7 @@ public static class ObjectExtensions
     ///     those 2 types are not convertible.
     ///     <para>Any exceptions are optionally ignored (<paramref name="ignoreException"/>).</para>
     ///     <para>
-    ///     If the exceptions are not ignored and the <paramref name="value"/> can't be convert even if 
+    ///     If the exceptions are not ignored and the <paramref name="value"/> can't be convert even if
     ///     the types are convertible with each other, an exception is thrown.</para>
     /// </summary>
     /// <typeparam name = "T"></typeparam>
@@ -175,7 +176,6 @@ public static class ObjectExtensions
         }
         return false;
     }
-
 
     /// <summary>
     /// 	Dynamically invokes a method using reflection
@@ -483,8 +483,6 @@ public static class ObjectExtensions
         return (value.Equals(value.GetTypeDefaultValue()) ? DBNull.Value : (object)value);
     }
 
-
-
     /// <summary>
     /// 	Returns TRUE, if specified target reference is equals with null reference.
     /// 	Othervise returns FALSE.
@@ -495,7 +493,7 @@ public static class ObjectExtensions
     /// 	So the code "null == ((MyClass)null)" can returns <c>false</c>.
     /// 	The most correct way how to test for null reference is using "System.Object.ReferenceEquals(object, object)" method.
     /// 	However the notation with ReferenceEquals method is long and uncomfortable - this extension method solve it.
-    /// 
+    ///
 
     /// </remarks>
     /// <example>
@@ -520,7 +518,7 @@ public static class ObjectExtensions
     /// 	So the code "null == ((MyClass)null)" can returns <c>false</c>.
     /// 	The most correct way how to test for null reference is using "System.Object.ReferenceEquals(object, object)" method.
     /// 	However the notation with ReferenceEquals method is long and uncomfortable - this extension method solve it.
-    /// 
+    ///
 
     /// </remarks>
     /// <example>
@@ -544,7 +542,7 @@ public static class ObjectExtensions
     /// 	So the code "null == ((MyClass)null)" can returns <c>false</c>.
     /// 	The most correct way how to test for null reference is using "System.Object.ReferenceEquals(object, object)" method.
     /// 	However the notation with ReferenceEquals method is long and uncomfortable - this extension method solve it.
-    /// 
+    ///
     /// </remarks>
     /// <example>
     /// 	object someObject = GetSomeObject();
@@ -568,7 +566,7 @@ public static class ObjectExtensions
     /// 	So the code "null == ((MyClass)null)" can returns <c>false</c>.
     /// 	The most correct way how to test for null reference is using "System.Object.ReferenceEquals(object, object)" method.
     /// 	However the notation with ReferenceEquals method is long and uncomfortable - this extension method solve it.
-    /// 
+    ///
 
     /// </remarks>
     /// <example>
@@ -590,7 +588,7 @@ public static class ObjectExtensions
     /// <example>
     /// 	float? number = null;
     /// 	string text1 = number.AsString();
-    /// 
+    ///
     /// 	number = 15.7892;
     /// 	string text2 = number.AsString();
     /// </example>
@@ -610,10 +608,10 @@ public static class ObjectExtensions
     /// <param name = "formatProvider">Format provider used to transformation target to string representation.</param>
     /// <example>
     /// 	CultureInfo czech = new CultureInfo("cs-CZ");
-    /// 
+    ///
     /// 	float? number = null;
     /// 	string text1 = number.AsString( czech );
-    /// 
+    ///
     /// 	number = 15.7892;
     /// 	string text2 = number.AsString( czech );
     /// </example>
@@ -634,7 +632,7 @@ public static class ObjectExtensions
     /// <example>
     /// 	float? number = null;
     /// 	string text1 = number.AsInvariantString();
-    /// 
+    ///
     /// 	number = 15.7892;
     /// 	string text2 = number.AsInvariantString();
     /// </example>
@@ -656,10 +654,10 @@ public static class ObjectExtensions
     /// <param name = "notNullValue">Value used instead of null.</param>
     /// <example>
     /// 	const int DEFAULT_NUMBER = 123;
-    /// 
+    ///
     /// 	int? number = null;
     /// 	int notNullNumber1 = number.NotNull( DEFAULT_NUMBER ).Value; // returns 123
-    /// 
+    ///
     /// 	number = 57;
     /// 	int notNullNumber2 = number.NotNull( DEFAULT_NUMBER ).Value; // returns 57
     /// </example>
@@ -681,7 +679,7 @@ public static class ObjectExtensions
     /// <example>
     /// 	int? number = null;
     /// 	int notNullNumber1 = number.NotNull( ()=> GetRandomNumber(10, 20) ).Value; // returns random number from 10 to 20
-    /// 
+    ///
     /// 	number = 57;
     /// 	int notNullNumber2 = number.NotNull( ()=> GetRandomNumber(10, 20) ).Value; // returns 57
     /// </example>
@@ -705,7 +703,7 @@ public static class ObjectExtensions
         return ToStringDumpInternal(o.ToXElement(flags, maxArrayElements)).Aggregate(new StringBuilder(), (sb, el) => sb.Append(el)).ToString();
     }
 
-    static IEnumerable<string> ToStringDumpInternal(XContainer toXElement)
+    private static IEnumerable<string> ToStringDumpInternal(XContainer toXElement)
     {
         foreach (var xElement in toXElement.Elements().OrderBy(o => o.Name.ToString()))
         {
@@ -731,7 +729,7 @@ public static class ObjectExtensions
         return ToHTMLTableInternal(o.ToXElement(flags, maxArrayElements), 0).Aggregate(String.Empty, (str, el) => str + el);
     }
 
-    static IEnumerable<string> ToHTMLTableInternal(XContainer xel, int padding)
+    private static IEnumerable<string> ToHTMLTableInternal(XContainer xel, int padding)
     {
         yield return FormatHTMLLine("<table>", padding);
         yield return FormatHTMLLine("<tr><th>Attribute</th><th>Value</th></tr>", padding + 1);
@@ -750,7 +748,7 @@ public static class ObjectExtensions
         yield return FormatHTMLLine("</table>", padding);
     }
 
-    static string FormatHTMLLine(string tag, int padding)
+    private static string FormatHTMLLine(string tag, int padding)
     {
         return String.Format("{0}{1}{2}", String.Empty.PadRight(padding, '\t'), tag, Environment.NewLine);
     }
@@ -775,7 +773,7 @@ public static class ObjectExtensions
     }
 
     // todo: Please document these methods
-    static XElement ToXElementInternal(object o, ICollection<object> visited, BindingFlags flags, int maxArrayElements)
+    private static XElement ToXElementInternal(object o, ICollection<object> visited, BindingFlags flags, int maxArrayElements)
     {
         if (o == null)
             return new XElement("null");
@@ -824,12 +822,12 @@ public static class ObjectExtensions
         return elems;
     }
 
-    static bool NeedRecursion(Type type, object o)
+    private static bool NeedRecursion(Type type, object o)
     {
         return o != null && (!type.IsPrimitive && !(o is String || o is DateTime || o is DateTimeOffset || o is TimeSpan || o is Delegate || o is Enum || o is Decimal || o is Guid));
     }
 
-    static object GetValue(object o, PropertyInfo propertyInfo)
+    private static object GetValue(object o, PropertyInfo propertyInfo)
     {
         object value;
         try
@@ -854,7 +852,7 @@ public static class ObjectExtensions
         return value;
     }
 
-    static string CleanName(IEnumerable<char> name, bool isArray)
+    private static string CleanName(IEnumerable<char> name, bool isArray)
     {
         var sb = new StringBuilder();
         foreach (var c in name.Where(c => Char.IsLetterOrDigit(c) && c != '`').Select(c => c))
@@ -1124,7 +1122,7 @@ public static class ObjectExtensions
     /// <see cref="ExtensionMethodsSettings.DefaultEncoding"/>
     /// </summary>
     /// <remarks>
-    /// The object to be serialized should be decorated with the 
+    /// The object to be serialized should be decorated with the
     /// <see cref="SerializableAttribute"/>, or implement the <see cref="ISerializable"/> interface.
     /// </remarks>
     /// <param name="source">The object to serialize</param>
@@ -1138,7 +1136,7 @@ public static class ObjectExtensions
     /// Serializes the object into an XML string
     /// </summary>
     /// <remarks>
-    /// The object to be serialized should be decorated with the 
+    /// The object to be serialized should be decorated with the
     /// <see cref="SerializableAttribute"/>, or implement the <see cref="ISerializable"/> interface.
     /// </remarks>
     /// <param name="source">The object to serialize</param>
@@ -1185,7 +1183,7 @@ public static class ObjectExtensions
     }
 
     /// <summary>
-    /// Throws an <see cref="System.ArgumentNullException"/> 
+    /// Throws an <see cref="System.ArgumentNullException"/>
     /// if the the value is null.
     /// </summary>
     /// <param name="value">The value to test.</param>
@@ -1206,6 +1204,7 @@ public static class ObjectExtensions
     {
         return Convert.GetTypeCode(value);
     }
+
     /// <summary>
     ///     Gets the types of the objects in the specified array.
     /// </summary>
@@ -1216,8 +1215,8 @@ public static class ObjectExtensions
         return Type.GetTypeArray(args);
     }
 
-
     #region 通用转换方法
+
     /// <summary>
     ///     An object extension method that converts the @this to a boolean.
     /// </summary>
@@ -1262,6 +1261,7 @@ public static class ObjectExtensions
             return defaultValue;
         }
     }
+
     /// <summary>
     /// An object extension method that converts this object to a boolean or default.
     /// </summary>
@@ -1777,6 +1777,7 @@ public static class ObjectExtensions
     {
         return Convert.ToDecimal(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a decimal or default.
     /// </summary>
@@ -1877,6 +1878,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a double.
     /// </summary>
@@ -1987,6 +1989,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a float.
     /// </summary>
@@ -1996,6 +1999,7 @@ public static class ObjectExtensions
     {
         return Convert.ToSingle(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a float or default.
     /// </summary>
@@ -2096,6 +2100,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a unique identifier.
     /// </summary>
@@ -2105,6 +2110,7 @@ public static class ObjectExtensions
     {
         return new Guid(@this.ToString());
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a unique identifier or default.
     /// </summary>
@@ -2205,6 +2211,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to an int 16.
     /// </summary>
@@ -2214,6 +2221,7 @@ public static class ObjectExtensions
     {
         return Convert.ToInt16(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to an int 16 or default.
     /// </summary>
@@ -2314,6 +2322,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to an int 32.
     /// </summary>
@@ -2323,7 +2332,6 @@ public static class ObjectExtensions
     {
         return Convert.ToInt32(@this);
     }
-
 
     /// <summary>
     ///     An object extension method that converts this object to an int 32 or default.
@@ -2425,6 +2433,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to an int 64.
     /// </summary>
@@ -2434,6 +2443,7 @@ public static class ObjectExtensions
     {
         return Convert.ToInt64(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to an int 64 or default.
     /// </summary>
@@ -2534,6 +2544,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a long.
     /// </summary>
@@ -2543,6 +2554,7 @@ public static class ObjectExtensions
     {
         return Convert.ToInt64(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a long or default.
     /// </summary>
@@ -2737,6 +2749,7 @@ public static class ObjectExtensions
 
         return Convert.ToByte(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable byte or default.
     /// </summary>
@@ -2985,6 +2998,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable date time or default.
     /// </summary>
@@ -3052,6 +3066,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable decimal.
     /// </summary>
@@ -3134,6 +3149,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable double.
     /// </summary>
@@ -3148,6 +3164,7 @@ public static class ObjectExtensions
 
         return Convert.ToDouble(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable double or default.
     /// </summary>
@@ -3215,6 +3232,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable float.
     /// </summary>
@@ -3297,6 +3315,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable unique identifier.
     /// </summary>
@@ -3311,6 +3330,7 @@ public static class ObjectExtensions
 
         return new Guid(@this.ToString());
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable unique identifier or default.
     /// </summary>
@@ -3378,6 +3398,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable int 16.
     /// </summary>
@@ -3392,6 +3413,7 @@ public static class ObjectExtensions
 
         return Convert.ToInt16(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable int 16 or default.
     /// </summary>
@@ -3459,6 +3481,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable int 32.
     /// </summary>
@@ -3473,6 +3496,7 @@ public static class ObjectExtensions
 
         return Convert.ToInt32(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable int 32 or default.
     /// </summary>
@@ -3540,6 +3564,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable int 64.
     /// </summary>
@@ -3637,6 +3662,7 @@ public static class ObjectExtensions
 
         return Convert.ToInt64(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable long or default.
     /// </summary>
@@ -3719,6 +3745,7 @@ public static class ObjectExtensions
 
         return Convert.ToSByte(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable s byte or default.
     /// </summary>
@@ -3786,6 +3813,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable short.
     /// </summary>
@@ -3868,6 +3896,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable single.
     /// </summary>
@@ -3882,6 +3911,7 @@ public static class ObjectExtensions
 
         return Convert.ToSingle(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable single or default.
     /// </summary>
@@ -3949,6 +3979,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable u int 16.
     /// </summary>
@@ -3963,6 +3994,7 @@ public static class ObjectExtensions
 
         return Convert.ToUInt16(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable u int 16 or default.
     /// </summary>
@@ -4030,6 +4062,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable u int 32.
     /// </summary>
@@ -4127,6 +4160,7 @@ public static class ObjectExtensions
 
         return Convert.ToUInt64(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable u int 64 or default.
     /// </summary>
@@ -4194,6 +4228,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable u long.
     /// </summary>
@@ -4208,6 +4243,7 @@ public static class ObjectExtensions
 
         return Convert.ToUInt64(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable u long or default.
     /// </summary>
@@ -4275,6 +4311,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a nullable u short.
     /// </summary>
@@ -4289,6 +4326,7 @@ public static class ObjectExtensions
 
         return Convert.ToUInt16(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a nullable u short or default.
     /// </summary>
@@ -4356,6 +4394,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to the s byte.
     /// </summary>
@@ -4466,6 +4505,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a short.
     /// </summary>
@@ -4475,6 +4515,7 @@ public static class ObjectExtensions
     {
         return Convert.ToInt16(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a short or default.
     /// </summary>
@@ -4575,6 +4616,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to a single.
     /// </summary>
@@ -4584,6 +4626,7 @@ public static class ObjectExtensions
     {
         return Convert.ToSingle(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a single or default.
     /// </summary>
@@ -4684,6 +4727,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that convert this object into a string representation.
     /// </summary>
@@ -4693,6 +4737,7 @@ public static class ObjectExtensions
     {
         return Convert.ToString(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to a string or default.
     /// </summary>
@@ -4793,6 +4838,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to an u int 16.
     /// </summary>
@@ -4903,6 +4949,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to an u int 32.
     /// </summary>
@@ -4912,6 +4959,7 @@ public static class ObjectExtensions
     {
         return Convert.ToUInt32(@this);
     }
+
     /// <summary>
     ///     An object extension method that converts this object to an u int 32 or default.
     /// </summary>
@@ -5012,6 +5060,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to an u int 64.
     /// </summary>
@@ -5122,6 +5171,7 @@ public static class ObjectExtensions
             return defaultValueFactory();
         }
     }
+
     /// <summary>
     ///     An object extension method that converts the @this to an u long.
     /// </summary>
@@ -5344,8 +5394,5 @@ public static class ObjectExtensions
         }
     }
 
-    #endregion
-
-
-
+    #endregion 通用转换方法
 }

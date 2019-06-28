@@ -5,7 +5,6 @@
 // All ZZZ Projects products: Entity Framework Extensions / Bulk Operations / Extension Methods /Icon Library
 
 using System;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 

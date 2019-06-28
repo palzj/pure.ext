@@ -1,17 +1,18 @@
 ﻿#if NETSTANDARD2_0
+
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Linq.Expressions;
+
 /// <summary>
 /// 系统缓存拓展类
 /// </summary>
 public static class FromCacheExtensions
 {
-
-    static MemoryCache cacheDefault = new MemoryCache(new MemoryCacheOptions());
-
+    private static MemoryCache cacheDefault = new MemoryCache(new MemoryCacheOptions());
 
     private const string CACHE_PRIFIX = "Pure.Ext.Caching;";
+
     /// <summary>
     /// 根据Key 缓存对象
     /// </summary>
@@ -101,9 +102,6 @@ public static class FromCacheExtensions
         return @this.FromCache(cache, key, valueFactory);
     }
 
-
-
-
     /// <summary>
     /// 获取或者新增对象缓存
     /// </summary>
@@ -116,8 +114,6 @@ public static class FromCacheExtensions
     {
         object val = cache.GetOrCreate(key, (k) => { return value; });
         return (TValue)val;
-
-
     }
 
     /// <summary>
@@ -150,15 +146,14 @@ public static class FromCacheExtensions
     {
         var lazy = new Lazy<TValue>(() => valueFactory(key));
 
-        Lazy<TValue> item = (Lazy<TValue>)cache.GetOrCreate(key, (k) => {
+        Lazy<TValue> item = (Lazy<TValue>)cache.GetOrCreate(key, (k) =>
+        {
             k.AbsoluteExpiration = absoluteExpiration;
             return lazy;
         });
 
         return item.Value;
     }
-
 }
-
 
 #endif

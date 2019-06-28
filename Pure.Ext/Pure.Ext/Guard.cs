@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Runtime.InteropServices;
+﻿using System;
 
 public static class Guard
 {
@@ -60,7 +58,6 @@ public static class Guard
         }
     }
 
-
     public static string GetString(string kind, params object[] args)
     {
         string str = kind;
@@ -77,10 +74,8 @@ public static class Guard
         }
         if (!tmp.IsNullOrEmpty())
         {
-
         }
 
         return str.TrimEnd(',');
     }
 }
-

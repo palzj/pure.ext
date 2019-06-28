@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Dynamic;
+using System.Linq;
+
 /// <summary>
 /// DynamicExtensions
 /// </summary>
 public static class DynamicExtensions
 {
-
     /// <summary>
     /// 转换为动态类型
     /// </summary>
@@ -36,8 +36,4 @@ public static class DynamicExtensions
         }
         return result;
     }
-
-
-
 }
-

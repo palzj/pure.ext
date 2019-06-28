@@ -1,5 +1,4 @@
-﻿
-/// <summary>
+﻿/// <summary>
 /// ValueTypeExtensions
 /// </summary>
 public static class ValueTypeExtensions
@@ -40,5 +39,4 @@ public static class ValueTypeExtensions
     {
         return (value.IsEmpty() ? null : (T?)value);
     }
-
 }

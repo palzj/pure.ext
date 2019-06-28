@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 /// <summary>
 ///  ExceptionExtensions
 /// </summary>
@@ -26,7 +27,7 @@ public static class ExceptionExtensions
     /// 获取所有错误信息
     ///</summary>
     ///<param name="exception">The exception</param>
-    ///<returns>IEnumerable of message</returns> 
+    ///<returns>IEnumerable of message</returns>
     /// <note>
     /// The most inner exception message is first in the list, and the most outer exception message is last in the list
     /// </note>
@@ -40,7 +41,7 @@ public static class ExceptionExtensions
     /// 获取所有错误信息
     ///</summary>
     ///<param name="exception">The exception</param>
-    ///<returns>IEnumerable of message</returns> 
+    ///<returns>IEnumerable of message</returns>
     /// <note>
     /// The most inner exception is first in the list, and the most outer exception is last in the list
     /// </note>
@@ -49,5 +50,4 @@ public static class ExceptionExtensions
         return exception != null ?
                 new List<Exception>(exception.InnerException.Exceptions()) { exception } : Enumerable.Empty<Exception>();
     }
-
 }

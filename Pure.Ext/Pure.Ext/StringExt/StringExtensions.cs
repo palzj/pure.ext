@@ -16,7 +16,6 @@ using System.Xml.XPath;
 /// </summary>
 public static class StringExtensions
 {
-
     #region TO adapt chinese
 
     /// <summary>
@@ -47,6 +46,7 @@ public static class StringExtensions
         int count = Regex.Matches(source, "([一-龥])").Count;
         return ((source.Length - count) + (count * 2));
     }
+
     /// <summary>
     /// 获取字符串行数
     /// </summary>
@@ -57,6 +57,7 @@ public static class StringExtensions
         Regex regex = new Regex("(\r\n)");
         return (regex.Matches(source).Count + 1);
     }
+
     /// <summary>
     /// 是否整数
     /// </summary>
@@ -66,6 +67,7 @@ public static class StringExtensions
     {
         return Regex.IsMatch(source, @"^([+-]?)\d+$");
     }
+
     /// <summary>
     /// 是否符合正则表达式规则
     /// </summary>
@@ -78,13 +80,12 @@ public static class StringExtensions
         return Regex.IsMatch(source, pattern, ignorCase ? RegexOptions.IgnoreCase : RegexOptions.None);
     }
 
-
     private static bool IsSample(string word)
     {
         string[] source = new string[] { "people", "deer", "sheep" };
         return source.Contains<string>(word.ToLower());
     }
-     
+
     /// <summary>
     /// 是否符合正则表达式规则
     /// </summary>
@@ -95,7 +96,6 @@ public static class StringExtensions
     {
         return Regex.IsMatch(source, pattern);
     }
-
 
     /// <summary>
     /// 转换字符串为半角
@@ -152,8 +152,6 @@ public static class StringExtensions
         return builder.ToString();
     }
 
-     
-
     /// <summary>
     /// 转换字符串为全角
     /// </summary>
@@ -175,7 +173,6 @@ public static class StringExtensions
         }
         return new string(chArray);
     }
-
 
     /// <summary>
     /// 转换字符串为英文单数词语
@@ -225,7 +222,6 @@ public static class StringExtensions
             return Microsoft.VisualBasic.Strings.StrConv(source, VbStrConv.TraditionalChinese, 0);
         }
 
-
         /// <summary>
         /// 转换字符串为简体中文
         /// </summary>
@@ -241,7 +237,7 @@ public static class StringExtensions
         }
 #endif
 
-    #endregion
+    #endregion TO adapt chinese
 
     #region Common string extensions
 
@@ -345,14 +341,14 @@ public static class StringExtensions
     /// 左右两边填充字符串
     /// </summary>
     /// <param name="value">Instance value.</param>
-    /// <param name="width">The number of characters in the resulting string, 
+    /// <param name="width">The number of characters in the resulting string,
     /// equal to the number of original characters plus any additional padding characters.
     /// </param>
     /// <param name="padChar">A Unicode padding character.</param>
-    /// <param name="truncate">Should get only the substring of specified width if string width is 
+    /// <param name="truncate">Should get only the substring of specified width if string width is
     /// more than the specified width.</param>
-    /// <returns>A new string that is equivalent to this instance, 
-    /// but center-aligned with as many paddingChar characters as needed to create a 
+    /// <returns>A new string that is equivalent to this instance,
+    /// but center-aligned with as many paddingChar characters as needed to create a
     /// length of width paramether.</returns>
     public static string PadBoth(this string value, int width, char padChar, bool truncate = false)
     {
@@ -434,7 +430,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name = "value">The string value to check.</param>
     /// <param name = "prefix">The prefix value to check for.</param>
-    /// <returns>The string value including the prefix</returns> 
+    /// <returns>The string value including the prefix</returns>
     public static string EnsureStartsWith(this string value, string prefix)
     {
         return value.StartsWith(prefix) ? value : string.Concat(prefix, value);
@@ -445,17 +441,13 @@ public static class StringExtensions
     /// </summary>
     /// <param name = "value">The string value to check.</param>
     /// <param name = "suffix">The suffix value to check for.</param>
-    /// <returns>The string value including the suffix</returns> 
+    /// <returns>The string value including the suffix</returns>
     public static string EnsureEndsWith(this string value, string suffix)
     {
         return value.EndsWith(suffix) ? value : string.Concat(value, suffix);
     }
 
-
-
     #region Extract
-
-
 
     /// <summary>
     /// 截取所有数字
@@ -473,9 +465,7 @@ public static class StringExtensions
         return value.Where(Char.IsDigit).Aggregate(new StringBuilder(value.Length), (sb, c) => sb.Append(c)).ToString();
     }
 
-
-
-    #endregion
+    #endregion Extract
 
     /// <summary>
     /// 将指定的字符串值与传递的附加字符串连接起来
@@ -594,7 +584,7 @@ public static class StringExtensions
     /// <returns>
     /// 	The join.
     /// </returns>
-    /// <remarks> 
+    /// <remarks>
     /// </remarks>
     public static string Join<T>(this T[] value, string separator)
     {
@@ -614,7 +604,7 @@ public static class StringExtensions
     /// </param>
     /// <param name = "removeCharc">
     /// 	The remove char.
-    /// </param> 
+    /// </param>
     public static string Remove(this string value, params char[] removeCharc)
     {
         var result = value;
@@ -622,7 +612,6 @@ public static class StringExtensions
             Array.ForEach(removeCharc, c => result = result.Remove(c.ToString()));
 
         return result;
-
     }
 
     /// <summary>
@@ -635,7 +624,6 @@ public static class StringExtensions
     {
         return strings.Aggregate(value, (current, c) => current.Replace(c, string.Empty));
     }
-
 
     /// <summary>
     /// 是否为空字符串
@@ -721,7 +709,6 @@ public static class StringExtensions
         return index < 0 ? value : value.Substring(index, value.Length - index);
     }
 
-
     /// <summary>
     /// 将文本大小写转换为标题大小写
     /// </summary>
@@ -739,6 +726,7 @@ public static class StringExtensions
     {
         return culture.TextInfo.ToTitleCase(value);
     }
+
     /// <summary>
     /// 转换为复数
     /// </summary>
@@ -852,7 +840,7 @@ public static class StringExtensions
     /// <param name="value">The input string.</param>
     /// <param name="oldValues">List of old values, which must be replaced</param>
     /// <param name="newValue">New value for all old values</param>
-    /// <returns>Returns new string with the replaced values</returns> 
+    /// <returns>Returns new string with the replaced values</returns>
     public static string ReplaceAll(this string value, IEnumerable<string> oldValues, string newValue)
     {
         var sbStr = new StringBuilder(value);
@@ -868,7 +856,7 @@ public static class StringExtensions
     /// <param name="value">The input string.</param>
     /// <param name="oldValues">List of old values, which must be replaced</param>
     /// <param name="newValues">List of new values</param>
-    /// <returns>Returns new string with the replaced values</returns> 
+    /// <returns>Returns new string with the replaced values</returns>
     public static string ReplaceAll(this string value, IEnumerable<string> oldValues, IEnumerable<string> newValues)
     {
         var sbStr = new StringBuilder(value);
@@ -885,7 +873,7 @@ public static class StringExtensions
         return sbStr.ToString();
     }
 
-    #endregion
+    #endregion Common string extensions
 
     #region Regex based extension methods
 
@@ -1066,6 +1054,7 @@ public static class StringExtensions
             if (match.Success) yield return match.Value;
         }
     }
+
     /// <summary>
     /// 分割并移除空元素
     /// </summary>
@@ -1074,7 +1063,6 @@ public static class StringExtensions
     /// <returns></returns>
     public static string[] SplitWithoutEmpty(this string value, string separator)
     {
-
         return value.Split(separator.ToArray(), StringSplitOptions.RemoveEmptyEntries);
     }
 
@@ -1089,7 +1077,6 @@ public static class StringExtensions
         return value.Split(regexPattern, RegexOptions.None);
     }
 
-
     /// <summary>
     /// 	Uses regular expressions to split a string into parts.
     /// </summary>
@@ -1101,6 +1088,7 @@ public static class StringExtensions
     {
         return Regex.Split(value, regexPattern, options);
     }
+
     /// <summary>
     ///     Returns a String array containing the substrings in this string that are delimited by elements of a specified
     ///     String array. A parameter specifies whether to return empty array elements.
@@ -1118,6 +1106,7 @@ public static class StringExtensions
     {
         return @this.Split(new[] { separator }, option);
     }
+
     /// <summary>
     /// 	Splits the given string into words and returns a string array.
     /// </summary>
@@ -1176,7 +1165,6 @@ public static class StringExtensions
             sb.Append(c);
         return sb.ToString();
     }
-
 
     /// <summary>
     /// Add space on every upper character
@@ -1289,7 +1277,7 @@ public static class StringExtensions
     ///         // groupArgs[i].Value is [Nagovitsyn, Aleksey, Russia]
     /// 	</code>
     /// </example>
-    /// <remarks> 
+    /// <remarks>
     /// </remarks>
     public static IEnumerable<Group> ExtractGroupArguments(this string value, string template,
                                                            ComparsionTemplateOptions compareTemplateOptions = _defaultComparsionTemplateOptions,
@@ -1304,7 +1292,7 @@ public static class StringExtensions
 
     #endregion ExtractArguments extension
 
-    #endregion
+    #endregion Regex based extension methods
 
     #region String to Enum
 
@@ -1339,7 +1327,7 @@ public static class StringExtensions
         return () => { return string.IsNullOrEmpty(dataToCheck) || !Enum.IsDefined(typeof(TEnum), dataToCheck); };
     }
 
-    #endregion
+    #endregion String to Enum
 
     private static bool StringContainsEquivalence(string inputValue, string comparisonValue)
     {
@@ -1758,7 +1746,6 @@ public static class StringExtensions
     public static bool ContainsAny(this string value, StringComparison comparisonType, params string[] values)
     {
         return values.Any(v => value.IndexOf(v, comparisonType) > -1);
-
     }
 
     /// <summary>
@@ -1797,7 +1784,7 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// 是否符合正则表达式 
+    /// 是否符合正则表达式
     /// </summary>
     /// <param name="value">The current <see cref="System.String"/> object</param>
     /// <param name="patterns">The array of string patterns</param>
@@ -1852,8 +1839,9 @@ public static class StringExtensions
 
         return value.Substring(0, length - e) + new String('.', e);
     }
+
     /// <summary>
-    /// 截断一个字符串 
+    /// 截断一个字符串
     /// </summary>
     /// <param name="this">The @this to act on.</param>
     /// <param name="maxLength">The maximum length.</param>
@@ -1888,7 +1876,9 @@ public static class StringExtensions
         int strLength = maxLength - suffix.Length;
         return @this.Substring(0, strLength) + suffix;
     }
+
     #region Z.EXT
+
     /// <summary>
     ///  比较两个指定对象的数值
     /// </summary>
@@ -1921,6 +1911,7 @@ public static class StringExtensions
     {
         return String.CompareOrdinal(strA, indexA, strB, indexB, length);
     }
+
     /// <summary>
     ///  复制字符串
     /// </summary>
@@ -1930,6 +1921,7 @@ public static class StringExtensions
     {
         return String.Copy(str);
     }
+
     /// <summary>
     /// 连接两个字符串
     /// </summary>
@@ -1965,6 +1957,7 @@ public static class StringExtensions
     {
         return String.Concat(str0, str1, str2, str3);
     }
+
     /// <summary>
     ///  格式化字符串
     /// </summary>
@@ -2016,6 +2009,7 @@ public static class StringExtensions
     {
         return String.Format(format, args);
     }
+
     /// <summary>
     ///     Retrieves the system&#39;s reference to the specified .
     /// </summary>
@@ -2027,6 +2021,7 @@ public static class StringExtensions
     {
         return String.Intern(str);
     }
+
     /// <summary>
     ///     Retrieves a reference to a specified .
     /// </summary>
@@ -2046,6 +2041,7 @@ public static class StringExtensions
     {
         return String.IsNullOrWhiteSpace(value);
     }
+
     /// <summary>
     ///   使用每个元素之间指定的分隔符连接字符串数组的所有元素。
     /// </summary>
@@ -2128,12 +2124,13 @@ public static class StringExtensions
     /// </returns>
     public static String Join(this String separator, String[] value, Int32 startIndex, Int32 count)
     {
-
         return String.Join(separator, value, startIndex, count);
     }
-    #endregion
+
+    #endregion Z.EXT
 
     #region Format
+
     /// <summary>
     ///  替换所有Html换行BR 为\r\n
     /// </summary>
@@ -2143,6 +2140,7 @@ public static class StringExtensions
     {
         return @this.Replace("<br />", "\r\n").Replace("<br>", "\r\n");
     }
+
     /// <summary>
     ///  转换XML的特殊字符
     /// </summary>
@@ -2152,8 +2150,9 @@ public static class StringExtensions
     {
         return @this.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;");
     }
+
     /// <summary>
-    /// 替换所有\r\n 为Html换行BR 
+    /// 替换所有\r\n 为Html换行BR
     /// </summary>
     /// <param name="this">The @this to act on.</param>
     /// <returns>A string.</returns>
@@ -2162,7 +2161,7 @@ public static class StringExtensions
         return @this.Replace("\r\n", "<br />").Replace("\n", "<br />");
     }
 
-    #endregion
+    #endregion Format
 
     /// <summary>
     ///  组合多个字符串路径
@@ -2178,9 +2177,10 @@ public static class StringExtensions
         list.Insert(0, @this);
         return Path.Combine(list.ToArray());
     }
+
     #region Encrypt
 
-    #region Bytes 
+    #region Bytes
 
     /// <summary>
     /// 转换为字节数组
@@ -2197,15 +2197,14 @@ public static class StringExtensions
     /// </summary>
     /// <param name = "value">The input string.</param>
     /// <param name = "encoding">The encoding to be used.</param>
-    /// <returns>The created byte array</returns> 
+    /// <returns>The created byte array</returns>
     public static byte[] ToBytes(this string value, Encoding encoding)
     {
         encoding = (encoding ?? Encoding.Default);
         return encoding.GetBytes(value);
     }
 
-    #endregion
-
+    #endregion Bytes
 
     /// <summary>
     /// 日文编码
@@ -2258,7 +2257,8 @@ public static class StringExtensions
 
         return txt;
     }
-    #endregion
+
+    #endregion Encrypt
 
     /// <summary>
     /// 根据条件截取字符串
@@ -2270,6 +2270,7 @@ public static class StringExtensions
     {
         return new string(@this.ToCharArray().Where(predicate).ToArray());
     }
+
     /// <summary>
     /// 截取所有字母字符
     /// </summary>
@@ -2279,6 +2280,7 @@ public static class StringExtensions
     {
         return new string(@this.ToCharArray().Where(x => Char.IsLetter(x)).ToArray());
     }
+
     /// <summary>
     ///  截取所有数字字符
     /// </summary>
@@ -2288,6 +2290,7 @@ public static class StringExtensions
     {
         return new string(@this.ToCharArray().Where(x => Char.IsNumber(x)).ToArray());
     }
+
     /// <summary>
     /// 移除所哟字母
     /// </summary>
@@ -2297,6 +2300,7 @@ public static class StringExtensions
     {
         return new string(@this.ToCharArray().Where(x => !Char.IsLetter(x)).ToArray());
     }
+
     /// <summary>
     ///  移除所有变音符字符
     /// </summary>
@@ -2318,6 +2322,7 @@ public static class StringExtensions
 
         return sb.ToString().Normalize(NormalizationForm.FormC);
     }
+
     /// <summary>
     ///  移除所有数字字符
     /// </summary>
@@ -2327,6 +2332,7 @@ public static class StringExtensions
     {
         return new string(@this.ToCharArray().Where(x => !Char.IsNumber(x)).ToArray());
     }
+
     /// <summary>
     ///  根据条件移除字符并组成新字符串
     /// </summary>
@@ -2337,6 +2343,7 @@ public static class StringExtensions
     {
         return new string(@this.ToCharArray().Where(x => !predicate(x)).ToArray());
     }
+
     /// <summary>
     /// 重复拼接字符串
     /// </summary>
@@ -2358,6 +2365,7 @@ public static class StringExtensions
 
         return sb.ToString();
     }
+
     /// <summary>
     /// 替换指定位置字符串
     /// </summary>
@@ -2388,6 +2396,7 @@ public static class StringExtensions
 
         return @this;
     }
+
     /// <summary>
     ///  替换第一次出现的字符串
     /// </summary>
@@ -2426,6 +2435,7 @@ public static class StringExtensions
                (listEnd.Any() ? oldValue : "") +
                string.Join(oldValue, listEnd);
     }
+
     /// <summary>
     /// 替换最后一次出现的字符串
     /// </summary>
@@ -2464,6 +2474,7 @@ public static class StringExtensions
                (old > 0 ? oldValue : "") +
                string.Join(newValue, listEnd);
     }
+
     /// <summary>
     ///  如果与oldValue相等，则返回newValue，否则返回自己的值
     /// </summary>
@@ -2488,8 +2499,9 @@ public static class StringExtensions
             .OrderBy(c => c)
             .SequenceEqual(otherString.OrderBy(c => c));
     }
+
     /// <summary>
-    ///   是否不为空字符串 包括: null, '' 
+    ///   是否不为空字符串 包括: null, ''
     /// </summary>
     /// <param name="this">The @this to act on.</param>
     /// <returns>true if '@this' is not (null or empty), false if not.</returns>
@@ -2497,6 +2509,7 @@ public static class StringExtensions
     {
         return !string.IsNullOrEmpty(@this);
     }
+
     /// <summary>
     /// 是否不为空字符串 包括: null, '', '空格'
     /// </summary>
@@ -2517,6 +2530,7 @@ public static class StringExtensions
     {
         return @this.Substring(0, Math.Min(length, @this.Length));
     }
+
     /// <summary>
     /// 截取右边指定长度的字符串
     /// </summary>
@@ -2527,7 +2541,6 @@ public static class StringExtensions
     {
         return @this.Substring(Math.Max(0, @this.Length - length));
     }
-
 
     /// <summary>
     /// 转换为Pascal格式字符串
@@ -2540,6 +2553,7 @@ public static class StringExtensions
 
         return Regex.Replace(value, "(?:^|_)(.)", match => match.Groups[1].Value.ToUpper());
     }
+
     /// <summary>
     /// 转换为Camel格式字符串
     /// </summary>
@@ -2575,7 +2589,6 @@ public static class StringExtensions
         return string.Join(" ", input.Split(new[] { '_', '-' }));
     }
 
-
     /// <summary>
     /// 过滤所有Html的标签
     /// </summary>
@@ -2603,5 +2616,4 @@ public static class StringExtensions
         Htmlstring = Regex.Replace(Htmlstring, @"&#(\d+);", " ", RegexOptions.IgnoreCase);
         return Htmlstring;
     }
-
 }

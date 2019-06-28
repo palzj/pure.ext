@@ -46,9 +46,9 @@ public static partial class Extensions
     {
         var type = @this.GetType();
 
-        return (T) (type.IsEnum ?
-            Attribute.GetCustomAttribute(type.GetField(@this.ToString()), typeof (T)) :
-            Attribute.GetCustomAttribute(type, typeof (T)));
+        return (T)(type.IsEnum ?
+            Attribute.GetCustomAttribute(type.GetField(@this.ToString()), typeof(T)) :
+            Attribute.GetCustomAttribute(type, typeof(T)));
     }
 
     /// <summary>
@@ -62,9 +62,9 @@ public static partial class Extensions
     {
         var type = @this.GetType();
 
-        return (T) (type.IsEnum ?
-            Attribute.GetCustomAttribute(type.GetField(@this.ToString()), typeof (T), inherit) :
-            Attribute.GetCustomAttribute(type, typeof (T), inherit));
+        return (T)(type.IsEnum ?
+            Attribute.GetCustomAttribute(type.GetField(@this.ToString()), typeof(T), inherit) :
+            Attribute.GetCustomAttribute(type, typeof(T), inherit));
     }
 
     /// <summary>An object extension method that gets custom attribute.</summary>
@@ -73,7 +73,7 @@ public static partial class Extensions
     /// <returns>The custom attribute.</returns>
     public static T GetCustomAttribute<T>(this MemberInfo @this) where T : Attribute
     {
-        return (T) Attribute.GetCustomAttribute(@this, typeof (T));
+        return (T)Attribute.GetCustomAttribute(@this, typeof(T));
     }
 
     /// <summary>An object extension method that gets custom attribute.</summary>
@@ -83,6 +83,6 @@ public static partial class Extensions
     /// <returns>The custom attribute.</returns>
     public static T GetCustomAttribute<T>(this MemberInfo @this, bool inherit) where T : Attribute
     {
-        return (T) Attribute.GetCustomAttribute(@this, typeof (T), inherit);
+        return (T)Attribute.GetCustomAttribute(@this, typeof(T), inherit);
     }
 }

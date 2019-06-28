@@ -29,6 +29,6 @@ public static partial class Extensions
     /// <returns>true if attribute defined, false if not.</returns>
     public static bool IsAttributeDefined<T>(this object @this, bool inherit) where T : Attribute
     {
-        return @this.GetType().IsDefined(typeof (T), inherit);
+        return @this.GetType().IsDefined(typeof(T), inherit);
     }
 }

@@ -15,7 +15,7 @@ public static class ComparableExtensions
     /// <param name = "maxValue">The maximum value.</param>
     /// <returns>
     /// 	<c>true</c> if the specified value is between min and max; otherwise, <c>false</c>.
-    /// </returns> 
+    /// </returns>
     public static bool IsBetween<T>(this T value, T minValue, T maxValue) where T : IComparable<T>
     {
         return IsBetween(value, minValue, maxValue, Comparer<T>.Default);
@@ -31,10 +31,10 @@ public static class ComparableExtensions
     /// <param name = "comparer">An optional comparer to be used instead of the types default comparer.</param>
     /// <returns>
     /// 	<c>true</c> if the specified value is between min and max; otherwise, <c>false</c>.
-    /// </returns> 
+    /// </returns>
     /// <remarks>
-    /// Note that this does an "inclusive" comparison:  The high & low values themselves are considered "in between".  
-    /// However, in some context, a exclusive comparion -- only values greater than the low end and lesser than the high end 
+    /// Note that this does an "inclusive" comparison:  The high & low values themselves are considered "in between".
+    /// However, in some context, a exclusive comparion -- only values greater than the low end and lesser than the high end
     /// are "in between" -- is desired; in other contexts, values can be greater or equal to the low end, but only less than the high end.
     /// </remarks>
     public static bool IsBetween<T>(this T value, T minValue, T maxValue, IComparer<T> comparer) where T : IComparable<T>
@@ -62,6 +62,7 @@ public static class ComparableExtensions
             return y.CompareTo(x);
         }
     }
+
     /// <summary>
     /// 升序排列
     /// </summary>

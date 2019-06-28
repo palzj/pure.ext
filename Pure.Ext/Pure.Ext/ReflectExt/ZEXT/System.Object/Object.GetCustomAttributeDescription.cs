@@ -20,8 +20,8 @@ public static partial class Extensions
         var type = value.GetType();
 
         var attributes = type.IsEnum ?
-            type.GetField(value.ToString()).GetCustomAttributes(typeof (DescriptionAttribute)) :
-            type.GetCustomAttributes(typeof (DescriptionAttribute));
+            type.GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute)) :
+            type.GetCustomAttributes(typeof(DescriptionAttribute));
 
         if (attributes.Length == 0)
         {
@@ -29,7 +29,7 @@ public static partial class Extensions
         }
         if (attributes.Length == 1)
         {
-            return ((DescriptionAttribute) attributes[0]).Description;
+            return ((DescriptionAttribute)attributes[0]).Description;
         }
 
         throw new Exception(string.Format("Ambiguous attribute. Multiple custom attributes of the same type found: {0} attributes found.", attributes.Length));
@@ -44,8 +44,8 @@ public static partial class Extensions
         var type = value.GetType();
 
         var attributes = type.IsEnum ?
-            type.GetField(value.ToString()).GetCustomAttributes(typeof (DescriptionAttribute), inherit) :
-            type.GetCustomAttributes(typeof (DescriptionAttribute));
+            type.GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), inherit) :
+            type.GetCustomAttributes(typeof(DescriptionAttribute));
 
         if (attributes.Length == 0)
         {
@@ -53,7 +53,7 @@ public static partial class Extensions
         }
         if (attributes.Length == 1)
         {
-            return ((DescriptionAttribute) attributes[0]).Description;
+            return ((DescriptionAttribute)attributes[0]).Description;
         }
 
         throw new Exception(string.Format("Ambiguous attribute. Multiple custom attributes of the same type found: {0} attributes found.", attributes.Length));
@@ -64,7 +64,7 @@ public static partial class Extensions
     /// <returns>The description attribute.</returns>
     public static string GetCustomAttributeDescription(this MemberInfo value)
     {
-        var attributes = value.GetCustomAttributes(typeof (DescriptionAttribute));
+        var attributes = value.GetCustomAttributes(typeof(DescriptionAttribute));
 
         if (attributes.Length == 0)
         {
@@ -72,7 +72,7 @@ public static partial class Extensions
         }
         if (attributes.Length == 1)
         {
-            return ((DescriptionAttribute) attributes[0]).Description;
+            return ((DescriptionAttribute)attributes[0]).Description;
         }
 
         throw new Exception(string.Format("Ambiguous attribute. Multiple custom attributes of the same type found: {0} attributes found.", attributes.Length));
@@ -84,7 +84,7 @@ public static partial class Extensions
     /// <returns>The description attribute.</returns>
     public static string GetCustomAttributeDescription(this MemberInfo value, bool inherit)
     {
-        var attributes = value.GetCustomAttributes(typeof (DescriptionAttribute), inherit);
+        var attributes = value.GetCustomAttributes(typeof(DescriptionAttribute), inherit);
 
         if (attributes.Length == 0)
         {
@@ -92,7 +92,7 @@ public static partial class Extensions
         }
         if (attributes.Length == 1)
         {
-            return ((DescriptionAttribute) attributes[0]).Description;
+            return ((DescriptionAttribute)attributes[0]).Description;
         }
 
         throw new Exception(string.Format("Ambiguous attribute. Multiple custom attributes of the same type found: {0} attributes found.", attributes.Length));

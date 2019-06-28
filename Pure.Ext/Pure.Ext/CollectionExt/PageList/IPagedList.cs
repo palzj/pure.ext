@@ -10,4 +10,5 @@ public interface IPagedList : IEnumerable
     int PageSize { get; set; }
     int TotalItemCount { get; set; }
 }
+
 public interface IPagedList<T> : IEnumerable<T>, IPagedList { }

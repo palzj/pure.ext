@@ -44,9 +44,9 @@ public static partial class Extensions
     {
         var type = @this.GetType();
 
-        return (T[]) (type.IsEnum ?
-            type.GetField(@this.ToString()).GetCustomAttributes(typeof (T)) :
-            type.GetCustomAttributes(typeof (T)));
+        return (T[])(type.IsEnum ?
+            type.GetField(@this.ToString()).GetCustomAttributes(typeof(T)) :
+            type.GetCustomAttributes(typeof(T)));
     }
 
     /// <summary>
@@ -60,9 +60,9 @@ public static partial class Extensions
     {
         var type = @this.GetType();
 
-        return (T[]) (type.IsEnum ?
-            type.GetField(@this.ToString()).GetCustomAttributes(typeof (T), inherit) :
-            type.GetCustomAttributes(typeof (T), inherit));
+        return (T[])(type.IsEnum ?
+            type.GetField(@this.ToString()).GetCustomAttributes(typeof(T), inherit) :
+            type.GetCustomAttributes(typeof(T), inherit));
     }
 
     /// <summary>An object extension method that gets custom attributes.</summary>
@@ -71,7 +71,7 @@ public static partial class Extensions
     /// <returns>An array of object.</returns>
     public static T[] GetCustomAttributes<T>(this MemberInfo @this) where T : Attribute
     {
-        return (T[]) @this.GetCustomAttributes(typeof (T));
+        return (T[])@this.GetCustomAttributes(typeof(T));
     }
 
     /// <summary>An object extension method that gets custom attributes.</summary>
@@ -81,6 +81,6 @@ public static partial class Extensions
     /// <returns>An array of object.</returns>
     public static T[] GetCustomAttributes<T>(this MemberInfo @this, bool inherit) where T : Attribute
     {
-        return (T[]) @this.GetCustomAttributes(typeof (T), inherit);
+        return (T[])@this.GetCustomAttributes(typeof(T), inherit);
     }
 }

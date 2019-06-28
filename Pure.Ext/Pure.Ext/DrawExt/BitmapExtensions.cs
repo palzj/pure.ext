@@ -6,7 +6,6 @@ using System.Drawing.Drawing2D;
     /// </summary>
     public static class BitmapExtensions
     {
-
         /// <summary>
         /// 	Scales the bitmap to the passed target size by respecting the aspect.
         /// </summary>
@@ -61,7 +60,5 @@ using System.Drawing.Drawing2D;
         {
             return bitmap.ScaleToSizeProportional(Color.White, width, height);
         }
-
-        
     }
 #endif

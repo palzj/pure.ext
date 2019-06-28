@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+
 /// <summary>
 /// 正则表达式拓展类
 /// </summary>
@@ -50,6 +51,7 @@ public static class RegexExtensions
     {
         return Regex.Match(input, pattern, options);
     }
+
     /// <summary>
     ///  获取匹配正则表达式的结果列表
     /// </summary>
@@ -90,6 +92,7 @@ public static class RegexExtensions
     {
         return Regex.IsMatch(obj, @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
     }
+
     /// <summary>
     ///  是否为Ip地址
     /// </summary>
@@ -102,16 +105,22 @@ public static class RegexExtensions
 
     //邮件正则表达式
     private static Regex _emailregex = new Regex(@"^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$", RegexOptions.IgnoreCase);
+
     //手机号正则表达式
     private static Regex _mobileregex = new Regex("^(13|15|18)[0-9]{9}$");
+
     //固话号正则表达式
     private static Regex _phoneregex = new Regex(@"^(\d{3,4}-?)?\d{7,8}$");
+
     //IP正则表达式
     private static Regex _ipregex = new Regex(@"^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$");
+
     //日期正则表达式
     private static Regex _dateregex = new Regex(@"(\d{4})-(\d{1,2})-(\d{1,2})");
+
     //数值(包括整数和小数)正则表达式
     private static Regex _numericregex = new Regex(@"^[-]?[0-9]+(\.[0-9]+)?$");
+
     //邮政编码正则表达式
     private static Regex _zipcoderegex = new Regex(@"^\d{6}$");
 
@@ -230,7 +239,6 @@ public static class RegexExtensions
         return _dateregex.IsMatch(s);
     }
 
-
     /// <summary>
     /// 是否为邮政编码
     /// </summary>
@@ -329,6 +337,7 @@ public static class RegexExtensions
     {
         return !Regex.IsMatch(@this, "[^a-zA-Z]");
     }
+
     /// <summary>
     /// 是否为字母数字：a-zA-Z0-9
     /// </summary>
@@ -338,6 +347,7 @@ public static class RegexExtensions
     {
         return !Regex.IsMatch(@this, "[^a-zA-Z0-9]");
     }
+
     /// <summary>
     ///  是否为数字0-9
     /// </summary>
@@ -347,7 +357,6 @@ public static class RegexExtensions
     {
         return !Regex.IsMatch(@this, "[^0-9]");
     }
-
 
     /// <summary>
     /// 是否是数值(包括整数和小数)
@@ -407,6 +416,6 @@ public static class RegexExtensions
 
         return true;
     }
-    #endregion
 
+    #endregion validation
 }

@@ -17,19 +17,26 @@ public static partial class Extensions
         switch (@this.MemberType)
         {
             case MemberTypes.Field:
-                return ((FieldInfo) @this).GetSignature();
+                return ((FieldInfo)@this).GetSignature();
+
             case MemberTypes.Property:
-                return ((PropertyInfo) @this).GetSignature();
+                return ((PropertyInfo)@this).GetSignature();
+
             case MemberTypes.Constructor:
-                return ((ConstructorInfo) @this).GetSignature();
+                return ((ConstructorInfo)@this).GetSignature();
+
             case MemberTypes.Method:
-                return ((MethodInfo) @this).GetSignature();
+                return ((MethodInfo)@this).GetSignature();
+
             case MemberTypes.TypeInfo:
-                return ((Type) @this).GetSignature();
+                return ((Type)@this).GetSignature();
+
             case MemberTypes.NestedType:
-                return ((Type) @this).GetSignature();
+                return ((Type)@this).GetSignature();
+
             case MemberTypes.Event:
-                return ((EventInfo) @this).GetSignature();
+                return ((EventInfo)@this).GetSignature();
+
             default:
                 return null;
         }

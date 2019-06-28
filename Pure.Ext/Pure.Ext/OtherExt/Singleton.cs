@@ -13,7 +13,7 @@ public abstract class Singleton<T> where T : class
     /// </summary>
     private static readonly Lazy<T> sInstance = new Lazy<T>(() => CreateInstanceOfT());
 
-    #endregion
+    #endregion Members
 
     #region Properties
 
@@ -22,7 +22,7 @@ public abstract class Singleton<T> where T : class
     /// </summary>
     public static T Instance { get { return sInstance.Value; } }
 
-    #endregion
+    #endregion Properties
 
     #region Methods
 
@@ -35,5 +35,5 @@ public abstract class Singleton<T> where T : class
         return Activator.CreateInstance(typeof(T), true) as T;
     }
 
-    #endregion
+    #endregion Methods
 }

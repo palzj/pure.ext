@@ -63,7 +63,7 @@ public static partial class Extensions
         {
             sb.Append("readonly ");
         }
-        if (requiredTypes.Any(x => x == typeof (IsVolatile)))
+        if (requiredTypes.Any(x => x == typeof(IsVolatile)))
         {
             sb.Append("volatile ");
         }

@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Text;
-
+using System.Collections;
+using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
-using System.Collections;
+using System.Text;
 using System.Text.RegularExpressions;
-using System.Globalization;
 
 public static class EncryptExtensions
 {
-     /// <summary>
+    /// <summary>
     /// MD5 加密静态方法
-     /// </summary>
-     /// <param name="value"></param>
-     /// <returns></returns>
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static string ToEncryptMd5String(this string value)
     {
         return PasswordHelper.MD5Encrypt(value);
@@ -29,6 +28,7 @@ public static class EncryptExtensions
     {
         return PasswordHelper.DESEncrypt(value, key);
     }
+
     /// <summary>
     /// DES 解密(数据加密标准，速度较快，适用于加密大量数据的场合)
     /// </summary>
@@ -39,6 +39,7 @@ public static class EncryptExtensions
     {
         return PasswordHelper.DESDecrypt(value, key);
     }
+
     /// <summary>
     /// AES 加密(高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法)
     /// </summary>
@@ -49,6 +50,7 @@ public static class EncryptExtensions
     {
         return PasswordHelper.AESEncrypt(value, key);
     }
+
     /// <summary>
     /// AES 解密(高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法)
     /// </summary>
@@ -70,6 +72,7 @@ public static class EncryptExtensions
     {
         return PasswordHelper.RC2Encrypt(value, key);
     }
+
     /// <summary>
     /// RC2 解密(用变长密钥对大量数据进行加密)
     /// </summary>
@@ -81,7 +84,6 @@ public static class EncryptExtensions
         return PasswordHelper.RC2Decrypt(value, key);
     }
 
-
     /// <summary>
     /// Base64加密
     /// </summary>
@@ -92,6 +94,7 @@ public static class EncryptExtensions
     {
         return PasswordHelper.Base64_Encode(value);
     }
+
     /// <summary>
     /// Base64解密
     /// </summary>
@@ -102,7 +105,6 @@ public static class EncryptExtensions
     {
         return PasswordHelper.Base64_Decode(value);
     }
-
 
     /// <summary>
     /// Base64解密
@@ -164,6 +166,7 @@ public static class EncryptExtensions
 
         return BitConverter.ToString(bytes);
     }
+
     /// <summary>
     /// 解密RSA字符串
     /// </summary>
@@ -181,7 +184,6 @@ public static class EncryptExtensions
         return Encoding.UTF8.GetString(bytes);
     }
 
-
     /// <summary>
     /// MD5字符串
     /// </summary>
@@ -198,6 +200,7 @@ public static class EncryptExtensions
         }
         return str2;
     }
+
     /// <summary>
     /// 转换为16位MD5字符串
     /// </summary>
@@ -207,6 +210,7 @@ public static class EncryptExtensions
     {
         return MD5(str).Substring(8, 0x10);
     }
+
     /// <summary>
     /// 转换为16位MD5字符串
     /// </summary>
@@ -218,7 +222,6 @@ public static class EncryptExtensions
     }
 }
 
-
 public class PasswordHelper
 {
     public static string EncryptPassword(string value, string EecryptKey, string type)
@@ -229,10 +232,13 @@ public class PasswordHelper
             {
                 case "MD5":
                     return MD5Encrypt(value);
+
                 case "RC2":
                     return RC2Encrypt(value, EecryptKey);
+
                 case "DES":
                     return DESEncrypt(value, EecryptKey);
+
                 case "AES":
                     return AESEncrypt(value, EecryptKey);
 
@@ -242,11 +248,9 @@ public class PasswordHelper
         }
         catch (Exception ex)
         {
-
             throw new Exception("PasswordHelper.EncryptPassword加密出错：" + ex.Message);
         }
     }
-
 
     // 创建Key
     public static string GenerateKey()
@@ -279,7 +283,6 @@ public class PasswordHelper
 
         return m_strEncrypt;
     }
-
 
     /// <summary>
     /// DES 加密(数据加密标准，速度较快，适用于加密大量数据的场合)
@@ -327,6 +330,7 @@ public class PasswordHelper
 
         return m_strEncrypt;
     }
+
     /// <summary>
     /// DES 解密(数据加密标准，速度较快，适用于加密大量数据的场合)
     /// </summary>
@@ -373,6 +377,7 @@ public class PasswordHelper
 
         return m_strDecrypt;
     }
+
     /// <summary>
     /// RC2 加密(用变长密钥对大量数据进行加密)
     /// </summary>
@@ -419,6 +424,7 @@ public class PasswordHelper
 
         return m_strEncrypt;
     }
+
     /// <summary>
     /// RC2 解密(用变长密钥对大量数据进行加密)
     /// </summary>
@@ -464,6 +470,7 @@ public class PasswordHelper
         finally { m_RC2Provider.Clear(); }
         return m_strDecrypt;
     }
+
     /// <summary>
     /// 3DES 加密(基于DES，对一块数据用三个不同的密钥进行三次加密，强度更高)
     /// </summary>
@@ -488,6 +495,7 @@ public class PasswordHelper
 
         return m_strEncrypt;
     }
+
     /// <summary>
     /// 3DES 解密(基于DES，对一块数据用三个不同的密钥进行三次加密，强度更高)
     /// </summary>
@@ -512,6 +520,7 @@ public class PasswordHelper
 
         return m_strDecrypt;
     }
+
     /// <summary>
     /// AES 加密(高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法)
     /// </summary>
@@ -554,6 +563,7 @@ public class PasswordHelper
 
         return m_strEncrypt;
     }
+
     /// <summary>
     /// AES 解密(高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法)
     /// </summary>
@@ -597,8 +607,8 @@ public class PasswordHelper
         return m_strDecrypt;
     }
 
-
     #region Base64加密
+
     /// <summary>
     /// Base64加密
     /// </summary>
@@ -615,9 +625,9 @@ public class PasswordHelper
         try
         {
             char[] Base64Code = new char[]{'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T',
-											'U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n',
-											'o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7',
-											'8','9','+','/','='};
+                                            'U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n',
+                                            'o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7',
+                                            '8','9','+','/','='};
             byte empty = (byte)0;
             ArrayList byteMessage = new ArrayList(Encoding.Default.GetBytes(text));
             StringBuilder outmessage;
@@ -660,9 +670,11 @@ public class PasswordHelper
             throw ex;
         }
     }
-    #endregion
+
+    #endregion Base64加密
 
     #region Base64解密
+
     /// <summary>
     /// Base64解密
     /// </summary>
@@ -731,9 +743,11 @@ public class PasswordHelper
             throw ex;
         }
     }
-    #endregion
+
+    #endregion Base64解密
 
     #region TripleDES加密
+
     /// <summary>
     /// TripleDES加密
     /// </summary>
@@ -760,9 +774,11 @@ public class PasswordHelper
             throw new Exception("加密时候出现错误!错误提示:\n" + ex.Message);
         }
     }
-    #endregion
+
+    #endregion TripleDES加密
 
     #region TripleDES解密
+
     /// <summary>
     /// TripleDES解密
     /// </summary>
@@ -787,14 +803,15 @@ public class PasswordHelper
             throw new Exception("解密时候出现错误!错误提示:\n" + ex.Message);
         }
     }
-    #endregion
+
+    #endregion TripleDES解密
 
     #region RSA 加密解密
 
     #region RSA 的密钥产生
 
     /// <summary>
-    /// RSA 的密钥产生 产生私钥 和公钥 
+    /// RSA 的密钥产生 产生私钥 和公钥
     /// </summary>
     /// <param name="xmlKeys"></param>
     /// <param name="xmlPublicKey"></param>
@@ -804,19 +821,20 @@ public class PasswordHelper
         xmlKeys = rsa.ToXmlString(true);
         xmlPublicKey = rsa.ToXmlString(false);
     }
-    #endregion
+
+    #endregion RSA 的密钥产生
 
     #region RSA的加密函数
-    //############################################################################## 
-    //RSA 方式加密 
-    //说明KEY必须是XML的行式,返回的是字符串 
-    //在有一点需要说明！！该加密方式有 长度 限制的！！ 
-    //############################################################################## 
+
+    //##############################################################################
+    //RSA 方式加密
+    //说明KEY必须是XML的行式,返回的是字符串
+    //在有一点需要说明！！该加密方式有 长度 限制的！！
+    //##############################################################################
 
     //RSA的加密函数  string
     public string RSAEncrypt(string xmlPublicKey, string m_strEncryptString)
     {
-
         byte[] PlainTextBArray;
         byte[] CypherTextBArray;
         string Result;
@@ -826,12 +844,11 @@ public class PasswordHelper
         CypherTextBArray = rsa.Encrypt(PlainTextBArray, false);
         Result = Convert.ToBase64String(CypherTextBArray);
         return Result;
-
     }
+
     //RSA的加密函数 byte[]
     public string RSAEncrypt(string xmlPublicKey, byte[] EncryptString)
     {
-
         byte[] CypherTextBArray;
         string Result;
         RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
@@ -839,11 +856,12 @@ public class PasswordHelper
         CypherTextBArray = rsa.Encrypt(EncryptString, false);
         Result = Convert.ToBase64String(CypherTextBArray);
         return Result;
-
     }
-    #endregion
+
+    #endregion RSA的加密函数
 
     #region RSA的解密函数
+
     //RSA的解密函数  string
     public string RSADecrypt(string xmlPrivateKey, string m_strDecryptString)
     {
@@ -856,7 +874,6 @@ public class PasswordHelper
         DypherTextBArray = rsa.Decrypt(PlainTextBArray, false);
         Result = (new UnicodeEncoding()).GetString(DypherTextBArray);
         return Result;
-
     }
 
     //RSA的解密函数  byte
@@ -869,19 +886,20 @@ public class PasswordHelper
         DypherTextBArray = rsa.Decrypt(DecryptString, false);
         Result = (new UnicodeEncoding()).GetString(DypherTextBArray);
         return Result;
-
     }
-    #endregion
 
-    #endregion
+    #endregion RSA的解密函数
+
+    #endregion RSA 加密解密
 
     #region RSA数字签名
 
     #region 获取Hash描述表
-    //获取Hash描述表 
+
+    //获取Hash描述表
     public bool GetHash(string m_strSource, ref byte[] HashData)
     {
-        //从字符串中取得Hash描述 
+        //从字符串中取得Hash描述
         byte[] Buffer;
         System.Security.Cryptography.HashAlgorithm MD5 = System.Security.Cryptography.HashAlgorithm.Create("MD5");
         Buffer = System.Text.Encoding.GetEncoding("GB2312").GetBytes(m_strSource);
@@ -890,11 +908,10 @@ public class PasswordHelper
         return true;
     }
 
-    //获取Hash描述表 
+    //获取Hash描述表
     public bool GetHash(string m_strSource, ref string strHashData)
     {
-
-        //从字符串中取得Hash描述 
+        //从字符串中取得Hash描述
         byte[] Buffer;
         byte[] HashData;
         System.Security.Cryptography.HashAlgorithm MD5 = System.Security.Cryptography.HashAlgorithm.Create("MD5");
@@ -903,27 +920,23 @@ public class PasswordHelper
 
         strHashData = Convert.ToBase64String(HashData);
         return true;
-
     }
 
-    //获取Hash描述表 
+    //获取Hash描述表
     public bool GetHash(System.IO.FileStream objFile, ref byte[] HashData)
     {
-
-        //从文件中取得Hash描述 
+        //从文件中取得Hash描述
         System.Security.Cryptography.HashAlgorithm MD5 = System.Security.Cryptography.HashAlgorithm.Create("MD5");
         HashData = MD5.ComputeHash(objFile);
         objFile.Close();
 
         return true;
-
     }
 
-    //获取Hash描述表 
+    //获取Hash描述表
     public bool GetHash(System.IO.FileStream objFile, ref string strHashData)
     {
-
-        //从文件中取得Hash描述 
+        //从文件中取得Hash描述
         byte[] HashData;
         System.Security.Cryptography.HashAlgorithm MD5 = System.Security.Cryptography.HashAlgorithm.Create("MD5");
         HashData = MD5.ComputeHash(objFile);
@@ -932,53 +945,49 @@ public class PasswordHelper
         strHashData = Convert.ToBase64String(HashData);
 
         return true;
-
     }
-    #endregion
+
+    #endregion 获取Hash描述表
 
     #region RSA签名
-    //RSA签名 
+
+    //RSA签名
     public bool SignatureFormatter(string p_strKeyPrivate, byte[] HashbyteSignature, ref byte[] EncryptedSignatureData)
     {
-
         System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
 
         RSA.FromXmlString(p_strKeyPrivate);
         System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA);
-        //设置签名的算法为MD5 
+        //设置签名的算法为MD5
         RSAFormatter.SetHashAlgorithm("MD5");
-        //执行签名 
+        //执行签名
         EncryptedSignatureData = RSAFormatter.CreateSignature(HashbyteSignature);
 
         return true;
-
     }
 
-    //RSA签名 
+    //RSA签名
     public bool SignatureFormatter(string p_strKeyPrivate, byte[] HashbyteSignature, ref string m_strEncryptedSignatureData)
     {
-
         byte[] EncryptedSignatureData;
 
         System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
 
         RSA.FromXmlString(p_strKeyPrivate);
         System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA);
-        //设置签名的算法为MD5 
+        //设置签名的算法为MD5
         RSAFormatter.SetHashAlgorithm("MD5");
-        //执行签名 
+        //执行签名
         EncryptedSignatureData = RSAFormatter.CreateSignature(HashbyteSignature);
 
         m_strEncryptedSignatureData = Convert.ToBase64String(EncryptedSignatureData);
 
         return true;
-
     }
 
-    //RSA签名 
+    //RSA签名
     public bool SignatureFormatter(string p_strKeyPrivate, string m_strHashbyteSignature, ref byte[] EncryptedSignatureData)
     {
-
         byte[] HashbyteSignature;
 
         HashbyteSignature = Convert.FromBase64String(m_strHashbyteSignature);
@@ -986,19 +995,17 @@ public class PasswordHelper
 
         RSA.FromXmlString(p_strKeyPrivate);
         System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA);
-        //设置签名的算法为MD5 
+        //设置签名的算法为MD5
         RSAFormatter.SetHashAlgorithm("MD5");
-        //执行签名 
+        //执行签名
         EncryptedSignatureData = RSAFormatter.CreateSignature(HashbyteSignature);
 
         return true;
-
     }
 
-    //RSA签名 
+    //RSA签名
     public bool SignatureFormatter(string p_strKeyPrivate, string m_strHashbyteSignature, ref string m_strEncryptedSignatureData)
     {
-
         byte[] HashbyteSignature;
         byte[] EncryptedSignatureData;
 
@@ -1007,28 +1014,27 @@ public class PasswordHelper
 
         RSA.FromXmlString(p_strKeyPrivate);
         System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA);
-        //设置签名的算法为MD5 
+        //设置签名的算法为MD5
         RSAFormatter.SetHashAlgorithm("MD5");
-        //执行签名 
+        //执行签名
         EncryptedSignatureData = RSAFormatter.CreateSignature(HashbyteSignature);
 
         m_strEncryptedSignatureData = Convert.ToBase64String(EncryptedSignatureData);
 
         return true;
-
     }
-    #endregion
+
+    #endregion RSA签名
 
     #region RSA 签名验证
 
     public bool SignatureDeformatter(string p_strKeyPublic, byte[] HashbyteDeformatter, byte[] DeformatterData)
     {
-
         System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
 
         RSA.FromXmlString(p_strKeyPublic);
         System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA);
-        //指定解密的时候HASH算法为MD5 
+        //指定解密的时候HASH算法为MD5
         RSADeformatter.SetHashAlgorithm("MD5");
 
         if (RSADeformatter.VerifySignature(HashbyteDeformatter, DeformatterData))
@@ -1039,12 +1045,10 @@ public class PasswordHelper
         {
             return false;
         }
-
     }
 
     public bool SignatureDeformatter(string p_strKeyPublic, string p_strHashbyteDeformatter, byte[] DeformatterData)
     {
-
         byte[] HashbyteDeformatter;
 
         HashbyteDeformatter = Convert.FromBase64String(p_strHashbyteDeformatter);
@@ -1053,7 +1057,7 @@ public class PasswordHelper
 
         RSA.FromXmlString(p_strKeyPublic);
         System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA);
-        //指定解密的时候HASH算法为MD5 
+        //指定解密的时候HASH算法为MD5
         RSADeformatter.SetHashAlgorithm("MD5");
 
         if (RSADeformatter.VerifySignature(HashbyteDeformatter, DeformatterData))
@@ -1064,19 +1068,17 @@ public class PasswordHelper
         {
             return false;
         }
-
     }
 
     public bool SignatureDeformatter(string p_strKeyPublic, byte[] HashbyteDeformatter, string p_strDeformatterData)
     {
-
         byte[] DeformatterData;
 
         System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
 
         RSA.FromXmlString(p_strKeyPublic);
         System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA);
-        //指定解密的时候HASH算法为MD5 
+        //指定解密的时候HASH算法为MD5
         RSADeformatter.SetHashAlgorithm("MD5");
 
         DeformatterData = Convert.FromBase64String(p_strDeformatterData);
@@ -1089,12 +1091,10 @@ public class PasswordHelper
         {
             return false;
         }
-
     }
 
     public bool SignatureDeformatter(string p_strKeyPublic, string p_strHashbyteDeformatter, string p_strDeformatterData)
     {
-
         byte[] DeformatterData;
         byte[] HashbyteDeformatter;
 
@@ -1103,7 +1103,7 @@ public class PasswordHelper
 
         RSA.FromXmlString(p_strKeyPublic);
         System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA);
-        //指定解密的时候HASH算法为MD5 
+        //指定解密的时候HASH算法为MD5
         RSADeformatter.SetHashAlgorithm("MD5");
 
         DeformatterData = Convert.FromBase64String(p_strDeformatterData);
@@ -1116,24 +1116,20 @@ public class PasswordHelper
         {
             return false;
         }
-
     }
 
+    #endregion RSA 签名验证
 
-    #endregion
-
-    public static string Base64_Decode(  string str)
+    public static string Base64_Decode(string str)
     {
         byte[] bytes = Convert.FromBase64String(str);
         return Encoding.UTF8.GetString(bytes);
     }
 
-    public static string Base64_Encode(  string str)
+    public static string Base64_Encode(string str)
     {
         return Convert.ToBase64String(Encoding.UTF8.GetBytes(str));
     }
 
-    #endregion
-
-
+    #endregion RSA数字签名
 }

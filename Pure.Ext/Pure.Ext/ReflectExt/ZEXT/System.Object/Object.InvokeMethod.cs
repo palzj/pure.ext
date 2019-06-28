@@ -40,6 +40,6 @@ public static partial class Extensions
         MethodInfo method = type.GetMethod(methodName, parameters.Select(o => o.GetType()).ToArray());
 
         object value = method.Invoke(obj, parameters);
-        return (value is T ? (T) value : default(T));
+        return (value is T ? (T)value : default(T));
     }
 }

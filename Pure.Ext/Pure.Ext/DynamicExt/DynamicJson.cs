@@ -68,13 +68,17 @@ public class DynamicJson : DynamicObject
         {
             case JsonType.boolean:
                 return (bool)element;
+
             case JsonType.number:
                 return (double)element;
+
             case JsonType.@string:
                 return (string)element;
+
             case JsonType.@object:
             case JsonType.array:
                 return new DynamicJson(element, type);
+
             case JsonType.@null:
             default:
                 return null;
@@ -89,10 +93,12 @@ public class DynamicJson : DynamicObject
         {
             case TypeCode.Boolean:
                 return JsonType.boolean;
+
             case TypeCode.String:
             case TypeCode.Char:
             case TypeCode.DateTime:
                 return JsonType.@string;
+
             case TypeCode.Int16:
             case TypeCode.Int32:
             case TypeCode.Int64:
@@ -105,8 +111,10 @@ public class DynamicJson : DynamicObject
             case TypeCode.SByte:
             case TypeCode.Byte:
                 return JsonType.number;
+
             case TypeCode.Object:
                 return (obj is IEnumerable) ? JsonType.array : JsonType.@object;
+
             case TypeCode.DBNull:
             case TypeCode.Empty:
             default:
@@ -127,12 +135,16 @@ public class DynamicJson : DynamicObject
             case JsonType.@string:
             case JsonType.number:
                 return obj;
+
             case JsonType.boolean:
                 return obj.ToString().ToLower();
+
             case JsonType.@object:
                 return CreateXObject(obj);
+
             case JsonType.array:
                 return CreateXArray(obj as IEnumerable);
+
             case JsonType.@null:
             default:
                 return null;

@@ -88,9 +88,6 @@ using System.Runtime.Caching;
             return @this.FromCache(cache, key, valueFactory);
         }
 
-
-
-
         /// <summary>A MemoryCache extension method that adds an or get existing.</summary>
         /// <typeparam name="TValue">Type of the value.</typeparam>
         /// <param name="cache">The cache to act on.</param>
@@ -152,8 +149,6 @@ using System.Runtime.Caching;
 
             return item.Value;
         }
-
     }
-
 
 #endif

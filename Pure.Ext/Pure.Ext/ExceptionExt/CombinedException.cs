@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 /// <summary>
 /// 组合异常的拓展
 /// </summary>
@@ -35,6 +36,7 @@ public class CombinedException : Exception
 
         return new CombinedException(message, innerExceptions);
     }
+
     /// <summary>
     /// 组合异常
     /// </summary>

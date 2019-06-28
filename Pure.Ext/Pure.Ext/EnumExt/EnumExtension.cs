@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -74,7 +73,6 @@ public static class EnumExtension
         return (T)Enum.Parse(variable.GetType(), result.ToString());
     }
 
-
     /// <summary>
     /// 是否包含标志值
     /// </summary>
@@ -107,9 +105,9 @@ public static class EnumExtension
     /// </summary>
     /// <param name="value"></param>
     /// <returns>
-    /// Returns the description given by the attribute <c>DisplayStringAttribute</c>. 
+    /// Returns the description given by the attribute <c>DisplayStringAttribute</c>.
     /// <para>If the attribute is not specified, returns the default name obtained by the method <c>ToString()</c></para>
-    /// </returns> 
+    /// </returns>
     public static string DisplayString(this Enum value)
     {
         FieldInfo info = value.GetType().GetField(value.ToString());
@@ -127,6 +125,7 @@ public static class EnumExtension
         var attr = value.GetType().GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
         return attr.Description;
     }
+
     /// <summary>
     ///  是否包含某个枚举
     /// </summary>
@@ -137,6 +136,7 @@ public static class EnumExtension
     {
         return Array.IndexOf(values, @this) != -1;
     }
+
     /// <summary>
     /// 是否不包含某个枚举
     /// </summary>
@@ -186,9 +186,9 @@ public static class EnumExtension
     /// <returns></returns>
     public static IDictionary<int, string> ToEnumList(this Type enumType)
     {
-
         return EnumHelper.GetEnumDictionary(enumType);
     }
+
     /// <summary>
     /// 枚举显示名(属性扩展)
     /// </summary>
@@ -240,6 +240,7 @@ public static class EnumExtension
         //如果没有找到自定义属性，直接返回属性项的名称
         return o.ToString();
     }
+
     /// <summary>
     /// 根据枚举成员获取自定义属性EnumDisplayNameAttribute的属性DisplayName
     /// </summary>
@@ -284,7 +285,7 @@ public static class EnumExtension
             //      return
             //        (f.GetCustomAttributes(typeof(EnumDisplayNameAttribute), true)[0] as EnumDisplayNameAttribute)
             //          .DisplayName;
-            //  } 
+            //  }
             FieldInfo fi = o.GetType().GetField(o.ToString());
             try
             {
@@ -303,17 +304,18 @@ public static class EnumExtension
 
     #region 新增扩展方法
 
-    /// <summary>  
-    /// 根据枚举值得到相应的枚举定义字符串  
-    /// </summary>  
-    /// <param name="value"></param>  
-    /// <param name="enumType"></param>  
-    /// <returns></returns>  
+    /// <summary>
+    /// 根据枚举值得到相应的枚举定义字符串
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="enumType"></param>
+    /// <returns></returns>
     public static String ToEnumNameByEnumValue(this int value, Type enumType)
     {
         NameValueCollection nvc = GetEnumStringFromEnumValue(enumType);
         return nvc[value.ToString()];
     }
+
     /// <summary>
     /// 根据枚举名称获取枚举值
     /// </summary>
@@ -326,11 +328,11 @@ public static class EnumExtension
         return value;
     }
 
-    /// <summary>  
-    /// 根据枚举类型得到其所有的 值 与 枚举定义字符串 的集合  
-    /// </summary>  
-    /// <param name="enumType"></param>  
-    /// <returns></returns>  
+    /// <summary>
+    /// 根据枚举类型得到其所有的 值 与 枚举定义字符串 的集合
+    /// </summary>
+    /// <param name="enumType"></param>
+    /// <returns></returns>
     public static NameValueCollection GetEnumStringFromEnumValue(Type enumType)
     {
         NameValueCollection nvc = new NameValueCollection();
@@ -349,23 +351,23 @@ public static class EnumExtension
         return nvc;
     }
 
-    /// <summary>  
-    /// 扩展方法：根据枚举值得到属性Description中的描述, 如果没有定义此属性则返回空串  
-    /// </summary>  
-    /// <param name="value"></param>  
-    /// <param name="enumType"></param>  
-    /// <returns></returns>  
+    /// <summary>
+    /// 扩展方法：根据枚举值得到属性Description中的描述, 如果没有定义此属性则返回空串
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="enumType"></param>
+    /// <returns></returns>
     public static String ToEnumDescriptionByEnumValue(this int value, Type enumType)
     {
         NameValueCollection nvc = GetNVCFromEnumValue(enumType);
         return nvc[value.ToString()];
     }
 
-    /// <summary>  
-    /// 根据枚举类型得到其所有的 值 与 枚举定义Description属性 的集合  
-    /// </summary>  
-    /// <param name="enumType"></param>  
-    /// <returns></returns>  
+    /// <summary>
+    /// 根据枚举类型得到其所有的 值 与 枚举定义Description属性 的集合
+    /// </summary>
+    /// <param name="enumType"></param>
+    /// <returns></returns>
     public static NameValueCollection GetNVCFromEnumValue(Type enumType)
     {
         NameValueCollection nvc = new NameValueCollection();
@@ -394,12 +396,8 @@ public static class EnumExtension
         return nvc;
     }
 
-    #endregion
+    #endregion 新增扩展方法
 }
-
-
-
-
 
 /// <summary>
 /// 枚举帮助类
@@ -412,9 +410,10 @@ public static class EnumHelper
     private static ConcurrentDictionary<Type, Dictionary<string, int>> enumValueNameDict = new ConcurrentDictionary<Type, Dictionary<string, int>>();
     private static ConcurrentDictionary<string, Type> enumTypeDict = null;
 
-    #endregion
+    #endregion Field
 
     #region Method
+
     /// <summary>
     /// 获取枚举对象Key与显示名称的字典
     /// </summary>
@@ -481,7 +480,6 @@ public static class EnumHelper
         return values;
     }
 
-
     /// <summary>
     /// 获取枚举对象的值内容
     /// </summary>
@@ -520,8 +518,7 @@ public static class EnumHelper
         return enumTypeDict;
     }
 
-    #endregion
-  
+    #endregion Method
 
     /// <summary>
     /// 根据枚举成员获取自定义属性EnumDisplayNameAttribute的属性DisplayName
@@ -567,7 +564,7 @@ public static class EnumHelper
             //      return
             //        (f.GetCustomAttributes(typeof(EnumDisplayNameAttribute), true)[0] as EnumDisplayNameAttribute)
             //          .DisplayName;
-            //  } 
+            //  }
             FieldInfo fi = o.GetType().GetField(o.ToString());
             try
             {
@@ -586,23 +583,23 @@ public static class EnumHelper
 
     #region 新增扩展方法
 
-    /// <summary>  
-    /// 扩展方法：根据枚举值得到相应的枚举定义字符串  
-    /// </summary>  
-    /// <param name="value"></param>  
-    /// <param name="enumType"></param>  
-    /// <returns></returns>  
+    /// <summary>
+    /// 扩展方法：根据枚举值得到相应的枚举定义字符串
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="enumType"></param>
+    /// <returns></returns>
     public static String ToEnumString(this int value, Type enumType)
     {
         NameValueCollection nvc = GetEnumStringFromEnumValue(enumType);
         return nvc[value.ToString()];
     }
 
-    /// <summary>  
-    /// 根据枚举类型得到其所有的 值 与 枚举定义字符串 的集合  
-    /// </summary>  
-    /// <param name="enumType"></param>  
-    /// <returns></returns>  
+    /// <summary>
+    /// 根据枚举类型得到其所有的 值 与 枚举定义字符串 的集合
+    /// </summary>
+    /// <param name="enumType"></param>
+    /// <returns></returns>
     public static NameValueCollection GetEnumStringFromEnumValue(Type enumType)
     {
         NameValueCollection nvc = new NameValueCollection();
@@ -621,13 +618,11 @@ public static class EnumHelper
         return nvc;
     }
 
-
-
-    /// <summary>  
-    /// 根据枚举类型得到其所有的 值 与 枚举定义Description属性 的集合  
-    /// </summary>  
-    /// <param name="enumType"></param>  
-    /// <returns></returns>  
+    /// <summary>
+    /// 根据枚举类型得到其所有的 值 与 枚举定义Description属性 的集合
+    /// </summary>
+    /// <param name="enumType"></param>
+    /// <returns></returns>
     public static NameValueCollection GetNVCFromEnumValue(Type enumType)
     {
         NameValueCollection nvc = new NameValueCollection();
@@ -656,5 +651,5 @@ public static class EnumHelper
         return nvc;
     }
 
-    #endregion
+    #endregion 新增扩展方法
 }

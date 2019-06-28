@@ -11,8 +11,6 @@ using System.Reflection;
 /// </summary>
 public static class ConvertToExt
 {
-
-
     /// <summary>
     ///  将IDataReader转换为DataTable
     /// </summary>
@@ -78,6 +76,7 @@ public static class ConvertToExt
             throw ex;
         }
     }
+
     /// <summary>
     /// 转换为列表对象类型
     /// </summary>
@@ -195,6 +194,7 @@ public static class ConvertToExt
 
         return entity;
     }
+
     /// <summary>
     ///     An IDataReader extension method that converts the @this to an expando object.
     /// </summary>
@@ -215,6 +215,7 @@ public static class ConvertToExt
 
         return entity;
     }
+
     /// <summary>
     ///     Enumerates to expando objects in this collection.
     /// </summary>
@@ -262,6 +263,7 @@ public static class ConvertToExt
     }
 
     #region DataTable to List
+
     /// <summary>
     /// 转换数据表类型
     /// </summary>
@@ -312,6 +314,7 @@ public static class ConvertToExt
 
         return list;
     }
+
     /// <summary>
     /// 转换为数据列表
     /// </summary>
@@ -366,7 +369,6 @@ public static class ConvertToExt
 
             foreach (PropertyInfo property in properties)
             {
-
                 dr[property.Name] = property.GetValue(item, null) == null ? DBNull.Value : property.GetValue(item, null); //property.GetValue(item, null);
             }
 
@@ -381,14 +383,11 @@ public static class ConvertToExt
         return dt;
     }
 
-
     public static T CreateItem<T>(this DataRow row)
     {
         T obj = default(T);
         if (row != null)
         {
-
-
             obj = Activator.CreateInstance<T>();
 
             foreach (DataColumn column in row.Table.Columns)
@@ -402,7 +401,7 @@ public static class ConvertToExt
                 }
                 catch
                 {
-                    // You can log something here  
+                    // You can log something here
                     //throw;
                 }
             }
@@ -428,19 +427,13 @@ public static class ConvertToExt
                 colType = nullableConverter.UnderlyingType;
 
                 //colType = colType.GetGenericArguments()[0];
-
             }
 
             table.Columns.Add(new DataColumn(prop.Name, colType));
-
         }
 
         return table;
     }
 
-
-
-    #endregion
-
-
+    #endregion DataTable to List
 }

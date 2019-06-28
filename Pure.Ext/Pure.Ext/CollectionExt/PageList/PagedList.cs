@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 /// <summary>
 /// 分页列表接口
 /// </summary>
@@ -21,6 +22,7 @@ public class PagedList<T> : List<T>, IPagedList<T>
         CurrentPageIndex = pageIndex;
         AddRange(items.Skip(StartRecordIndex - 1).Take(pageSize));
     }
+
     /// <summary>
     /// 使用当前页数据项、当前页索引、每页显示记录数和要分页的总记录数初始化PagedList对象
     /// </summary>
@@ -35,6 +37,7 @@ public class PagedList<T> : List<T>, IPagedList<T>
         CurrentPageIndex = pageIndex;
         PageSize = pageSize;
     }
+
     /// <summary>
     /// 使用要分页的所有数据项、当前页索引和每页显示的记录数初始化PagedList对象
     /// </summary>
@@ -49,6 +52,7 @@ public class PagedList<T> : List<T>, IPagedList<T>
         CurrentPageIndex = pageIndex;
         PageSize = pageSize;
     }
+
     /// <summary>
     /// 使用当前页数据项、当前页索引、每页显示记录数和要分页的总记录数初始化PagedList对象
     /// </summary>
@@ -68,22 +72,27 @@ public class PagedList<T> : List<T>, IPagedList<T>
     /// 当前分页索引
     /// </summary>
     public int CurrentPageIndex { get; set; }
+
     /// <summary>
     /// 每页行数
     /// </summary>
     public int PageSize { get; set; }
+
     /// <summary>
     /// 总行数
     /// </summary>
     public int TotalItemCount { get; set; }
+
     /// <summary>
     /// 总页数
     /// </summary>
     public int TotalPageCount { get { return (int)Math.Ceiling(TotalItemCount / (double)PageSize); } }
+
     /// <summary>
     /// 开始索引
     /// </summary>
     public int StartRecordIndex { get { return (CurrentPageIndex - 1) * PageSize + 1; } }
+
     /// <summary>
     /// 结束索引
     /// </summary>

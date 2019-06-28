@@ -64,6 +64,7 @@ public static class StringBuilderExtensions
         if (condition) sb.AppendFormat(format, args);
         return sb;
     }
+
     /// <summary>
     /// 根据条件追加一行数组拼接的字符串
     /// </summary>
@@ -90,6 +91,7 @@ public static class StringBuilderExtensions
 
         return @this;
     }
+
     /// <summary>
     /// 追加一行格式化字符串
     /// </summary>
@@ -115,6 +117,7 @@ public static class StringBuilderExtensions
 
         return @this;
     }
+
     /// <summary>
     /// 追加一行数组拼接的字符串
     /// </summary>
@@ -141,6 +144,7 @@ public static class StringBuilderExtensions
 
         return @this;
     }
+
     /// <summary>
     /// 从指定位置向后截取字符串
     /// </summary>

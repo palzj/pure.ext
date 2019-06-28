@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,12 +8,14 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+
 /// <summary>
 /// 通用拓展
 /// </summary>
 public static class GenericExtension
 {
     #region IsAssignableFrom
+
     /// <summary>
     /// 是否继承某个类型
     /// </summary>
@@ -38,9 +39,11 @@ public static class GenericExtension
         Type type = @this.GetType();
         return type.IsAssignableFrom(targetType);
     }
-    #endregion
+
+    #endregion IsAssignableFrom
 
     #region As or default
+
     /// <summary>
     /// 强制转换为指定类型，如果出错则返回默认值
     /// </summary>
@@ -83,7 +86,7 @@ public static class GenericExtension
     /// </summary>
     /// <typeparam name="T">Generic type parameter.</typeparam>
     /// <param name="this">The @this to act on.</param>
-    /// <param name="defaultValueFactory">The default value factory.</param> 
+    /// <param name="defaultValueFactory">The default value factory.</param>
     public static T AsOrDefault<T>(this object @this, Func<T> defaultValueFactory)
     {
         try
@@ -101,7 +104,7 @@ public static class GenericExtension
     /// </summary>
     /// <typeparam name="T">Generic type parameter.</typeparam>
     /// <param name="this">The @this to act on.</param>
-    /// <param name="defaultValueFactory">The default value factory.</param> 
+    /// <param name="defaultValueFactory">The default value factory.</param>
     public static T AsOrDefault<T>(this object @this, Func<object, T> defaultValueFactory)
     {
         try
@@ -113,7 +116,9 @@ public static class GenericExtension
             return defaultValueFactory(@this);
         }
     }
-    #endregion
+
+    #endregion As or default
+
     /// <summary>
     /// 将对象按类型转换
     /// </summary>
@@ -124,6 +129,7 @@ public static class GenericExtension
     {
         return (obj as T);
     }
+
     /// <summary>
     /// 将对象按类型转换
     /// </summary>
@@ -146,6 +152,7 @@ public static class GenericExtension
         }
         return local;
     }
+
     /// <summary>
     /// 断言不为空
     /// </summary>
@@ -159,6 +166,7 @@ public static class GenericExtension
             action(value);
         }
     }
+
     /// <summary>
     /// 断言不为空
     /// </summary>
@@ -175,6 +183,7 @@ public static class GenericExtension
         }
         return default(TReturn);
     }
+
     /// <summary>
     /// 断言不为空
     /// </summary>
@@ -202,6 +211,7 @@ public static class GenericExtension
                 result = converter.ToBoolean(CultureInfo.CurrentCulture);
                 hasChange = true;
                 break;
+
             case TypeCode.Char:
                 result = converter.ToChar(CultureInfo.CurrentCulture);
                 hasChange = true;
@@ -271,12 +281,10 @@ public static class GenericExtension
                 result = converter.ToString(CultureInfo.CurrentCulture);
                 hasChange = true;
                 break;
-
         }
         result2 = result == null ? default(TTarget) : (TTarget)result;
         return hasChange;
     }
-
 
     /// <summary>
     /// 判断是否某个类型元素
@@ -288,6 +296,7 @@ public static class GenericExtension
     {
         return (obj is T);
     }
+
     /// <summary>
     /// 判断是否在集合里面
     /// </summary>
@@ -299,6 +308,7 @@ public static class GenericExtension
     {
         return arr.Contains(obj);
     }
+
     /// <summary>
     /// 判断是否在某个元素范围里面
     /// </summary>
@@ -335,6 +345,7 @@ public static class GenericExtension
         }
         return true;
     }
+
     /// <summary>
     /// 判断是否为空字符串
     /// </summary>
@@ -343,8 +354,8 @@ public static class GenericExtension
     public static bool IsNullOrEmpty(this string source)
     {
         return string.IsNullOrEmpty(source);
-
     }
+
     /// <summary>
     /// 判断是否为空字符串
     /// </summary>
@@ -353,8 +364,8 @@ public static class GenericExtension
     public static bool IsNullOrWhiteSpace(this string source)
     {
         return string.IsNullOrWhiteSpace(source);
-
     }
+
     private static object[] ReadObjectValues<TS, TO>(TS source, TO other, IEnumerable<PropertyInfo> sourceProperties, IEnumerable<PropertyInfo> otherProperties)
     {
         ArrayList list = new ArrayList();
@@ -368,7 +379,9 @@ public static class GenericExtension
         }
         return list.ToArray();
     }
+
     #region 类型转换
+
     /// <summary>
     /// 将数组转换为指定类型的数组
     /// </summary>
@@ -384,6 +397,7 @@ public static class GenericExtension
         }
         return Array.ConvertAll<T, TTarget>(arr, s => s.To<TTarget>());
     }
+
     /// <summary>
     /// 将迭代器转换为指定类型的迭代器
     /// </summary>
@@ -399,6 +413,7 @@ public static class GenericExtension
         }
         return Array.ConvertAll<T, TTarget>(arr.ToArray(), s => s.To<TTarget>()).AsEnumerable();
     }
+
     /// <summary>
     /// 将列表转换为指定类型的列表
     /// </summary>
@@ -414,7 +429,8 @@ public static class GenericExtension
         }
         return Array.ConvertAll<T, TTarget>(arr.ToArray(), s => s.To<TTarget>()).ToList();
     }
-    #endregion
+
+    #endregion 类型转换
 
     /// <summary>
     /// 转换到指定类型值
@@ -427,14 +443,13 @@ public static class GenericExtension
         if (value.IsNullOrEmpty())
         {
             return default(TTarget);
-
         }
         else
         {
             return (TTarget)value.ToType(typeof(TTarget), default(TTarget));
-
         }
     }
+
     /// <summary>
     /// 转换到指定类型值
     /// </summary>
@@ -447,13 +462,13 @@ public static class GenericExtension
         if (value.IsNullOrEmpty())
         {
             return defaultValue;
-
         }
         else
         {
             return (TTarget)value.ToType(typeof(TTarget), defaultValue);
         }
     }
+
     /// <summary>
     /// 转换到指定类型值
     /// </summary>
@@ -467,11 +482,9 @@ public static class GenericExtension
         if (source.IsNullOrEmpty())
         {
             return defaultValue;
-
         }
         else
         {
-
             TTarget local;
             IConvertible converter = source.As<IConvertible>();
             if ((converter != null) && FromConvertible<TTarget>(converter, out local))
@@ -516,7 +529,6 @@ public static class GenericExtension
             }
             if (conversionType.IsNullableType())
             {
-
                 if (value == null || value.IsNullOrEmpty())
                 {
                     return null;
@@ -528,7 +540,6 @@ public static class GenericExtension
                 conversionType = nullableConverter.UnderlyingType;
 
                 return value == null ? Activator.CreateInstance(conversionType) : Convert.ChangeType(value, conversionType);
-
             }
             if (conversionType == typeof(bool))
             {
@@ -566,6 +577,7 @@ public static class GenericExtension
             return defaultValue;
         }
     }
+
     /// <summary>
     /// 尝试释放对象资源
     /// </summary>
@@ -579,8 +591,8 @@ public static class GenericExtension
         }
     }
 
-
     #region value comparsion
+
     /// <summary>
     ///  判断值是否在指定区间范围内
     /// </summary>
@@ -593,6 +605,7 @@ public static class GenericExtension
     {
         return minValue.CompareTo(@this) == -1 && @this.CompareTo(maxValue) == -1;
     }
+
     /// <summary>
     ///  判断值是否在指定数组内
     /// </summary>
@@ -604,6 +617,7 @@ public static class GenericExtension
     {
         return Array.IndexOf(values, @this) != -1;
     }
+
     /// <summary>
     ///  判断值是否在指定区间范围内
     /// </summary>
@@ -616,6 +630,7 @@ public static class GenericExtension
     {
         return @this.CompareTo(minValue) >= 0 && @this.CompareTo(maxValue) <= 0;
     }
+
     /// <summary>
     /// 判断值是否数据库空类型
     /// </summary>
@@ -650,8 +665,7 @@ public static class GenericExtension
         return Array.IndexOf(values, @this) == -1;
     }
 
-    #endregion
-
+    #endregion value comparsion
 
     /// <summary>
     /// 链式动作拓展
@@ -666,6 +680,7 @@ public static class GenericExtension
 
         return @this;
     }
+
     /// <summary>
     /// 深拷贝数据
     /// </summary>
@@ -682,6 +697,7 @@ public static class GenericExtension
             return (T)formatter.Deserialize(stream);
         }
     }
+
     /// <summary>
     /// 浅拷贝数据
     /// </summary>
@@ -693,7 +709,6 @@ public static class GenericExtension
         MethodInfo method = @this.GetType().GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
         return (T)method.Invoke(@this, null);
     }
-
 
     #region To
 
@@ -734,7 +749,6 @@ public static class GenericExtension
 
             if (type.IsNullableType())
             {
-
                 if (@this == null || @this.IsNullOrEmpty())
                 {
                     return null;
@@ -744,7 +758,6 @@ public static class GenericExtension
                 type = nullableConverter.UnderlyingType;
 
                 return @this == null ? Activator.CreateInstance(type) : Convert.ChangeType(@this, type);
-
             }
 
             if (@this == DBNull.Value)
@@ -779,7 +792,7 @@ public static class GenericExtension
     /// <typeparam name="T">Generic type parameter.</typeparam>
     /// <param name="this">this.</param>
     /// <param name="defaultValueFactory">The default value factory.</param>
-    /// <returns>The given data converted to a T.</returns> 
+    /// <returns>The given data converted to a T.</returns>
     public static T ToOrDefault<T>(this Object @this, Func<object, T> defaultValueFactory)
     {
         try
@@ -859,9 +872,11 @@ public static class GenericExtension
     {
         return @this.ToOrDefault(x => defaultValue);
     }
-    #endregion
+
+    #endregion To
 
     #region Get value or default
+
     /// <summary>
     ///  获取指定类型的值，如果出错则返回指定默认值
     /// </summary>
@@ -912,7 +927,7 @@ public static class GenericExtension
     /// <param name="func">The function.</param>
     /// <param name="defaultValueFactory">The default value factory.</param>
     /// <returns>The value or default.</returns>
- 
+
     public static TResult GetValueOrDefault<T, TResult>(this T @this, Func<T, TResult> func, Func<TResult> defaultValueFactory)
     {
         try
@@ -933,7 +948,7 @@ public static class GenericExtension
     /// <param name="this">The @this to act on.</param>
     /// <param name="func">The function.</param>
     /// <param name="defaultValueFactory">The default value factory.</param>
-    /// <returns>The value or default.</returns> 
+    /// <returns>The value or default.</returns>
     public static TResult GetValueOrDefault<T, TResult>(this T @this, Func<T, TResult> func, Func<T, TResult> defaultValueFactory)
     {
         try
@@ -945,7 +960,9 @@ public static class GenericExtension
             return defaultValueFactory(@this);
         }
     }
-    #endregion
+
+    #endregion Get value or default
+
     /// <summary>
     /// 判断是否不为空，如果是则执行指定动作
     /// </summary>
@@ -1000,8 +1017,9 @@ public static class GenericExtension
     {
         return @this != null ? func(@this) : defaultValueFactory();
     }
+
     /// <summary>
-    ///  判断是否为空，如果是则执行指定动作，并返回值 
+    ///  判断是否为空，如果是则执行指定动作，并返回值
     /// </summary>
     /// <typeparam name="T">Generic type parameter.</typeparam>
     /// <param name="this">The @this to act on.</param>
@@ -1015,6 +1033,7 @@ public static class GenericExtension
         }
         return @this;
     }
+
     /// <summary>
     ///   判断两个值相等，如果是则返回null， 否则范围自己的值
     /// </summary>
@@ -1029,8 +1048,8 @@ public static class GenericExtension
             return null;
         }
         return @this;
-
     }
+
     /// <summary>
     ///   判断是否在数组中，如果是则返回null， 否则范围自己的值
     /// </summary>
@@ -1046,6 +1065,7 @@ public static class GenericExtension
         }
         return @this;
     }
+
     /// <summary>
     /// 如果为null则返回空字符串，否则执行ToString()
     /// </summary>
@@ -1057,6 +1077,7 @@ public static class GenericExtension
     }
 
     #region Try
+
     /// <summary>
     /// 尝试转换为指定类型的值
     /// </summary>
@@ -1231,5 +1252,6 @@ public static class GenericExtension
             return false;
         }
     }
-    #endregion
+
+    #endregion Try
 }

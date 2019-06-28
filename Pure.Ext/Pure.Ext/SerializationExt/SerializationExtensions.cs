@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 public static class SerializationExtensions
 {
     #region JSON
+
     /// <summary>
     /// 序列化为Json字符串
     /// </summary>
@@ -44,6 +45,7 @@ public static class SerializationExtensions
             return encoding.GetString(memoryStream.ToArray());
         }
     }
+
     /// <summary>
     /// 解析Json字符串为指定对象
     /// </summary>
@@ -76,9 +78,11 @@ public static class SerializationExtensions
             return (T)serializer.ReadObject(stream);
         }
     }
-    #endregion
+
+    #endregion JSON
 
     #region XML
+
     /// <summary>
     /// 序列化为Xml字符串
     /// </summary>
@@ -97,6 +101,7 @@ public static class SerializationExtensions
             }
         }
     }
+
     /// <summary>
     /// 解析Xml字符串为指定对象
     /// </summary>
@@ -110,9 +115,11 @@ public static class SerializationExtensions
 
         return (T)x.Deserialize(r);
     }
-    #endregion
+
+    #endregion XML
 
     #region Binary
+
     /// <summary>
     /// 序列化为二进制字符串
     /// </summary>
@@ -147,6 +154,7 @@ public static class SerializationExtensions
             return encoding.GetString(memoryStream.ToArray());
         }
     }
+
     /// <summary>
     ///  解析二进制字符串为指定对象
     /// </summary>
@@ -177,9 +185,11 @@ public static class SerializationExtensions
             return (T)binaryRead.Deserialize(stream);
         }
     }
-    #endregion
+
+    #endregion Binary
 
     #region JavaScript
+
     //    /// <summary>
     /////     A T extension method that serialize java script.
     ///// </summary>
@@ -202,6 +212,6 @@ public static class SerializationExtensions
     //    var serializer = new JavaScriptSerializer();
     //    return serializer.Deserialize<T>(@this);
     //}
-    #endregion
 
+    #endregion JavaScript
 }

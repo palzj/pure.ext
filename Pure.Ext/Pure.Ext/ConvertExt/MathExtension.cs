@@ -1,8 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+
 /// <summary>
 /// MathExtension
 /// </summary>
@@ -31,6 +29,7 @@ public static class MathExtension
         }
         return localArray[index].To<T, double>(0.0);
     }
+
     /// <summary>
     /// 四舍五入
     /// </summary>
@@ -56,6 +55,7 @@ public static class MathExtension
         }
         return num2;
     }
+
     /// <summary>
     /// 获取方差
     /// </summary>
@@ -84,4 +84,3 @@ public static class MathExtension
         return Math.Sqrt(d);
     }
 }
-

@@ -6,7 +6,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -65,16 +64,14 @@ public static partial class Extensions
                     parameterConstraint.Add("class");
                 }
 
-
                 if (GenericParameterAttributes.None != (sConstraints & GenericParameterAttributes.DefaultConstructorConstraint))
                 {
                     parameterConstraint.Add("new()");
                 }
 
-       
                 if (parameterConstraint.Count > 0)
                 {
-                    constraintType.Add(x.Name + " : " + string.Join(", " , parameterConstraint));
+                    constraintType.Add(x.Name + " : " + string.Join(", ", parameterConstraint));
                 }
 
                 return x.GetShortDeclaraction();
@@ -90,11 +87,11 @@ public static partial class Extensions
         List<string> constaints = new List<string>();
 
         // Inherited Class
-        if (@this.BaseType != null && @this.BaseType != typeof (object))
+        if (@this.BaseType != null && @this.BaseType != typeof(object))
         {
             constaints.Add(@this.BaseType.GetShortDeclaraction());
         }
-        
+
         // Inherited Interface
         Type[] interfaces = @this.GetInterfaces();
         if (interfaces.Length > 0)
